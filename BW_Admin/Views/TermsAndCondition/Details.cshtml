@@ -1,0 +1,37 @@
+﻿@model BW_Admin.tbl_TermsAndCondition
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="content">
+    <div class="module">
+        <div class="module-head">    <h3>Terms &amp; Conditions</h3>    </div>   <div class="module-body">
+
+            <div>
+
+                <h5>
+                    Name
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.tnc_Name)
+                </div>
+
+                <h5>
+                    Description
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.tnc_Description)
+                </div>
+
+
+            </div>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.tnc_ID }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    </div>
+</div>

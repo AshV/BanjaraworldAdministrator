@@ -1,0 +1,93 @@
+﻿@model BW_Admin.tbl_Tour
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <dl class="dl-horizontal">
+
+        <dt>
+            Tour
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tor_Name)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.tor_Overview)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tor_Overview)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tor_Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tor_Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tor_Priority)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tor_Priority)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tor_Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tor_Active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tor_BannerImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tor_BannerImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tor_SquareImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tor_SquareImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tor_BackgroundImage1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tor_BackgroundImage1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tor_BackgroundImage2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tor_BackgroundImage2)
+        </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

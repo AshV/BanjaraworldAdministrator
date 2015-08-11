@@ -1,0 +1,79 @@
+﻿@model BW_Admin.tbl_Gallery
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="content">
+
+    <div class="module">
+        <div class="module-head">
+            <h3>Gallery</h3>
+        </div>
+        <div class="module-body">
+
+            @using (Html.BeginForm("Create", "Gallery", FormMethod.Post, new { @class = "form-horizontal row-fluid" }))
+            {
+                
+
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="control-group">
+                        <label class="control-label">Image Name</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.glr_Image, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.glr_Image, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Image Description</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.glr_Description, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.glr_Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Image Type</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.glr_Type, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.glr_Type, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Place ID</label>
+                        <div class="controls">
+                            @Html.DropDownList("glr_PlaceID", null, htmlAttributes: new { @class = "span8" })
+                            @Html.ValidationMessageFor(model => model.glr_PlaceID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Package ID</label>
+                        <div class="controls">
+                            @Html.DropDownList("glr_PackageID", null, htmlAttributes: new { @class = "span8" })
+                            @Html.ValidationMessageFor(model => model.glr_PackageID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="col-md-offset-2 controls">
+                            <input type="submit" value="Create" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </div>
+</div>
+
+            <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+            <script src="~/Scripts/jquery.validate.min.js"></script>
+            <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

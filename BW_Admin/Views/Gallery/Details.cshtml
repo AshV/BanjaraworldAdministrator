@@ -1,0 +1,61 @@
+﻿@model BW_Admin.tbl_Gallery
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="content">
+    <div class="module">
+        <div class="module-head">    <h3>Gallery</h3>    </div>   <div class="module-body">
+
+            <div>
+
+                <h5>
+                    glr_Image)
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.glr_Image)
+                </div>
+
+                <h5>
+                    glr_Description)
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.glr_Description)
+                </div>
+
+                <h5>
+                    glr_Type)
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.glr_Type)
+                </div>
+
+                <h5>
+                    tbl_Package.pkf_Name)
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.tbl_Package.pkf_Name)
+                </div>
+
+                <h5>
+                    tbl_Place.plc_Description)
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.tbl_Place.plc_Description)
+                </div>
+
+
+            </div>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.glr_ID }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    </div>
+</div>

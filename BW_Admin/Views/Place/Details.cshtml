@@ -1,0 +1,100 @@
+﻿@model BW_Admin.tbl_Place
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="content">
+    <div class="module">
+        <div class="module-head">    <h3>Place</h3>    </div>   <div class="module-body">
+
+            <div>
+
+                <h5>
+                    Name
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.plc_Name)
+                </div>
+
+                <h5>
+                    Description
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.plc_Description)
+                </div>
+
+                <h5>
+                    TimeToVisit
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.plc_TimeToVisit)
+                </div>
+
+                <h5>
+                    Location
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.plc_Location)
+                </div>
+
+                <h5>
+                    Priority
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.plc_Priority)
+                </div>
+
+                <h5>
+                    Active
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.plc_Active)
+                </div>
+
+                <h5>
+                    Banner Image
+                </h5>
+
+                <div class="well">
+                    <img class="img-responsive" src="~/Pictures/@Model.plc_BannerImage" />
+                </div>
+
+                <h5>
+                    Square Image
+                </h5>
+
+                <div class="well">
+                    <img class="img-responsive" src="~/Pictures/@Model.plc_SquareImage" />
+                </div>
+
+                <h5>
+                    Background Image 1
+                </h5>
+
+                <div class="well">
+                    <img class="img-responsive" src="~/Pictures/@Model.plc_BackgroundImage1" />
+                </div>
+
+                <h5>
+                    Background Image 2
+                </h5>
+
+                <div class="well">
+                    <img class="img-responsive" src="~/Pictures/@Model.plc_BackgroundImage2" />
+                </div>
+
+            </div>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.plc_ID }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+﻿@model BW_Admin.tbl_FeaturedPackage
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="content">
+    <div class="module">
+        <div class="module-head">    <h3>Featured Packages</h3>    </div>   <div class="module-body">
+
+            <div>
+
+                <h5>
+                    ftp_Priority)
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.ftp_Priority)
+                </div>
+
+                <h5>
+                    tbl_Package.pkf_Name)
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.tbl_Package.pkf_Name)
+                </div>
+
+
+            </div>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.ftp_ID }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    </div>
+</div>

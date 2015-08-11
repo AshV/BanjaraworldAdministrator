@@ -1,0 +1,64 @@
+﻿@model IEnumerable<BW_Admin.tbl_FeaturedPackage>
+
+@{
+    ViewBag.Title = "Featured Packages";
+}
+
+@section Styles{
+    <link rel="stylesheet" type="text/css" href="~/Content/jquery.dataTables.css">
+<style>
+    th {
+        text-align: left;
+    }
+</style>
+
+}
+
+<div class="content">
+
+    <div class="module">
+        <div class="module-head">
+            <h3>Featured Packages</h3>
+        </div>
+        <div class="module-body">
+
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+            <table id="indexTab" class="display">
+                <thead>
+                    <tr>
+                        <th>
+                            Featured Package Name
+                        </th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tbl_Package.pkf_Name)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ftp_ID })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Datatable{
+    <script src="~/Scripts/datatables/jquery.dataTables.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#indexTab').DataTable();
+        });
+    </script>
+
+}

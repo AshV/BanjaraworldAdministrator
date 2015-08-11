@@ -1,0 +1,167 @@
+﻿@model BW_Admin.tbl_Package
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="content">
+
+    <div class="module">
+        <div class="module-head">
+            <h3>Package</h3>
+        </div>
+        <div class="module-body">
+
+            @using (Html.BeginForm("Create", "Package", FormMethod.Post, new { @class = "form-horizontal row-fluid" }))
+            {
+                
+
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="control-group">
+                        <label class="control-label">Name</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.pkf_Name, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkf_Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Subcategory</label>
+                        <div class="controls">
+                            @Html.DropDownList("pkg_SubcategoryFK", null, htmlAttributes: new { @class = "span8" })
+                            @Html.ValidationMessageFor(model => model.pkg_SubcategoryFK, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Subtitle</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.pkg_Subtitle, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_Subtitle, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Overview</label>
+                        <div class="controls">
+                            @Html.TextAreaFor(model => model.pkg_Overview, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_Overview, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Description</label>
+                        <div class="controls">
+                            @Html.TextAreaFor(model => model.pkg_Description, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Inclusion</label>
+                        <div class="controls">
+                            @Html.TextAreaFor(model => model.pkg_Inclusion, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_Inclusion, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Default Day</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.pkg_DefaultDay, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_DefaultDay, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Day 1 Heading</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.pkg_DayHeading1, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_DayHeading1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Day 1 Itinerary</label>
+                        <div class="controls">
+                            @Html.TextAreaFor(model => model.pkg_DayItinerary1, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_DayItinerary1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Day 2 Heading</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.pkg_DayHeading2, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_DayHeading2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Day 2 Itinerary</label>
+                        <div class="controls">
+                            @Html.TextAreaFor(model => model.pkg_DayItinerary2, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_DayItinerary2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Day 3 Heading</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.pkg_DayHeading3, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_DayHeading3, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Day 3 Itinerary</label>
+                        <div class="controls">
+                            @Html.TextAreaFor(model => model.pkg_DayItinerary3, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_DayItinerary3, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Exclusion</label>
+                        <div class="controls">
+                            @Html.DropDownList("pkg_ExclusionFK", null, htmlAttributes: new { @class = "span8" })
+                            @Html.ValidationMessageFor(model => model.pkg_ExclusionFK, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Terms &amp; Conditions</label>
+                        <div class="controls">
+                            @Html.DropDownList("pkg_TermsAndConditionFK", null, htmlAttributes: new { @class = "span8" })
+                            @Html.ValidationMessageFor(model => model.pkg_TermsAndConditionFK, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Cancellation Policy</label>
+                        <div class="controls">
+                            @Html.DropDownList("pkg_CancelPolicyFK", null, htmlAttributes: new { @class = "span8" })
+                            @Html.ValidationMessageFor(model => model.pkg_CancelPolicyFK, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="col-md-offset-2 controls">
+                            <input type="submit" value="Create" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

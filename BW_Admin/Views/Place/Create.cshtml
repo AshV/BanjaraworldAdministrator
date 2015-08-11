@@ -1,0 +1,71 @@
+﻿@model BW_Admin.tbl_Place
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="content">
+
+    <div class="module">
+        <div class="module-head">
+            <h3>Place</h3>
+        </div>
+        <div class="module-body">
+
+            @using (Html.BeginForm("Create", "Place", FormMethod.Post, new { @class = "form-horizontal row-fluid" }))
+            {
+                
+
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="control-group">
+                        <label class="control-label">Name</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.plc_Name, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.plc_Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Description</label>
+                        <div class="controls">
+                            @Html.TextAreaFor(model => model.plc_Description, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.plc_Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Best Time to Visit</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.plc_TimeToVisit, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.plc_TimeToVisit, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Location</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.plc_Location, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.plc_Location, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="col-md-offset-2 controls">
+                            <input type="submit" value="Create" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </div>
+</div>
+
+            <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+            <script src="~/Scripts/jquery.validate.min.js"></script>
+            <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

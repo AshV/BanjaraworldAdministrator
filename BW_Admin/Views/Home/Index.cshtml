@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "Home";
+    List<int> CountList = (List<int>)ViewBag.ListCount;
+}
+
+<div class="row">
+
+    <div class="span9">
+        <div class="content">
+            <div class="btn-controls">
+                <div class="btn-box-row row-fluid">
+                    <div href="#" class="btn-box big span4">
+                        <h3>Categories</h3>
+                        <h1>@CountList[0]</h1>
+                        <a href="~/Category"><i class="icon-align-justify"></i></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="~/Category/Create"><i class="icon-plus"></i></a>
+                    </div>
+                    <div href="#" class="btn-box big span4">
+                        <h3>Subcategories</h3>
+                        <h1>@CountList[1]</h1>
+                        <a href="~/Subcategory"><i class="icon-align-justify"></i></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="~/Subcategory/Create"><i class="icon-plus"></i></a>
+                    </div>
+                    <div href="#" class="btn-box big span4">
+                        <h3>Places</h3>
+                        <h1>@CountList[2]</h1>
+                        <a href="~/Place"><i class="icon-align-justify"></i></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="~/Place/Create"><i class="icon-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="span9">
+        <div class="content">
+            <div class="btn-controls">
+                <div class="btn-box-row row-fluid">
+                    <div href="#" class="btn-box big span4">
+                        <h3>Tours</h3>
+                        <h1>@CountList[3]</h1>
+                        <a href="~/Tour"><i class="icon-align-justify"></i></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="~/Tour/Create"><i class="icon-plus"></i></a>
+                    </div>
+                    <div href="#" class="btn-box big span4">
+                        <h3>Featured Packages</h3>
+                        <h1>@CountList[4]</h1>
+                        <a href="~/FeaturedPackage"><i class="icon-align-justify"></i></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="~/FeaturedPackage/Create"><i class="icon-plus"></i></a>
+                    </div>
+                    <div href="#" class="btn-box big span4">
+                        <h3>Packages</h3>
+                        <h1>@CountList[5]</h1>
+                        <a href="~/Package"><i class="icon-align-justify"></i></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="~/Package/Create"><i class="icon-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="span9">
+        <div class="content">
+            <div class="btn-controls">
+                <div class="btn-box-row row-fluid">
+                    <div href="#" class="btn-box big span4">
+                        <h3>Exclusions</h3>
+                        <h1>@CountList[7]</h1>
+                        <a href="~/Exclusion"><i class="icon-align-justify"></i></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="~/Exclusion/Create"><i class="icon-plus"></i></a>
+                    </div>
+                    <div href="#" class="btn-box big span4">
+                        <h3>Cancellation Policy</h3>
+                        <h1>@CountList[8]</h1>
+                        <a href="~/CancelPolicy"><i class="icon-align-justify"></i></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="~/CancelPolicy/Create"><i class="icon-plus"></i></a>
+                    </div>
+                    <div href="#" class="btn-box big span4">
+                        <h3>Terms &amp; Conditions</h3>
+                        <h1>@CountList[9]</h1>
+                        <a href="~/TermsAndCondition"><i class="icon-align-justify"></i></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="~/TermsAndCondition/Create"><i class="icon-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

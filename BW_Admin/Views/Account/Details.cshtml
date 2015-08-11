@@ -1,0 +1,39 @@
+﻿@model BW_Admin.tbl_Account
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="content">
+    <div class="module">
+        <div class="module-head">    <h3>Account</h3>    </div>   <div class="module-body">
+
+            <div>
+                <h4>tbl_Account</h4>
+
+
+                <h5>
+                    acc_Password)
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.acc_Password)
+                </div>
+
+                <h5>
+                    acc_Active)
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.acc_Active)
+                </div>
+
+
+            </div>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.acc_UserID }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    </div>
+</div>

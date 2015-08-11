@@ -1,0 +1,264 @@
+﻿@model BW_Admin.tbl_Package
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            Package Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pkf_Name)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.pkg_Subtitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pkg_Subtitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pkg_Overview)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pkg_Overview)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pkg_Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pkg_Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pkg_Inclusion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pkg_Inclusion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pkg_DefaultSeason)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pkg_DefaultSeason)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pkg_DefaultRoom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pkg_DefaultRoom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pkg_DefaultDay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pkg_DefaultDay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pkg_DayHeading1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pkg_DayHeading1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pkg_DayItinerary1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pkg_DayItinerary1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pkg_DayHeading2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pkg_DayHeading2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pkg_DayItinerary2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pkg_DayItinerary2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pkg_DayHeading3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pkg_DayHeading3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pkg_DayItinerary3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pkg_DayItinerary3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pkg_Roomtype1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pkg_Roomtype1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pkg_Roomtype2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pkg_Roomtype2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pkg_Roomtype3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pkg_Roomtype3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pkg_Priority)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pkg_Priority)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pkg_Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pkg_Active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pkg_BannerImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pkg_BannerImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pkg_SquareImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pkg_SquareImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pkg_BackgroundImage1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pkg_BackgroundImage1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pkg_BackgroundImage2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pkg_BackgroundImage2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_CancelPolicy.cnp_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_CancelPolicy.cnp_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_Exclusion.exc_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_Exclusion.exc_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_Subcategory.sct_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_Subcategory.sct_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_TermsAndCondition.tnc_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_TermsAndCondition.tnc_Name)
+        </dd>*@
+
+    </dl>    @{
+        if (ViewBag.Deletable == "No")
+        {
+            <div class="well" id="dependency">
+                <h5>You need to clear following dependencies before deleting.</h5>
+
+                @foreach (tbl_Package p in ViewBag.Places)
+                {
+                    <b>Place : </b> @p.pkf_Name <br />
+                }
+
+
+                    @if (ViewBag.Featured == "Yes")
+                    {
+                        <h5>This Package is Featured. Remove as featured in order to delete.</h5>
+                    }
+                     
+            </div>
+        }
+    }
+
+    @using (Html.BeginForm())
+    {
+        
+
+        <div class="form-actions no-color">
+            @if (ViewBag.Deletable == "No")
+            {
+                <input type="submit" value="Delete" disabled class="btn btn-danger" />
+            }
+            else
+            {
+                <input type="submit" value="Delete" class="btn btn-danger" />
+            }
+            |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,64 @@
+﻿@model BW_Admin.tbl_Gallery
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tbl_Gallery</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.glr_Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.glr_Image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.glr_Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.glr_Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.glr_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.glr_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_Package.pkf_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_Package.pkf_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_Place.plc_Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_Place.plc_Description)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

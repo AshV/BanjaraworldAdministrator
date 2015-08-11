@@ -1,0 +1,95 @@
+﻿@model BW_Admin.tbl_Package
+
+@{
+    ViewBag.Title = "UploadImages";
+}
+<style>
+    .progress {
+        position: relative;
+        width: 400px;
+        border: 1px solid #ddd;
+        padding: 1px;
+    }
+
+    .progress-bar {
+        width: 0px;
+        height: 20px;
+        background-color: #00ff21;
+    }
+</style>
+
+
+<div class="content">
+
+    <div class="module">
+        <div class="module-head">
+            <h3>Upload Images</h3>
+        </div>
+        <div class="module-body">
+
+            <div class="progress">
+                <div class="progress-bar">0%</div>
+            </div>
+            <div id="status"></div>
+
+            @using (Ajax.BeginForm("UploadImages", "Package", new AjaxOptions() { HttpMethod = "POST" }, new { enctype = "multipart/form-data", id = "uploadform" }))
+            {
+                ;
+                <input type="file" name="files" class="btn" id="fu1" />
+                <select name="imgType" id="imgType">
+                    <option value="BI">Banner Image</option>
+                    <option value="SI">Square Image</option>
+                    <option value="BI1">Background 1</option>
+                    <option value="BI2">Background 2</option>
+                </select>
+                <input type="hidden" value="@ViewBag.packageId" name="PackageID" />
+                <input type="submit" class="btn btn-success" value="Uplaod File" />
+            }
+
+        <hr />
+        @*<p class="btn-group">
+            <a class="btn btn-primary" href="">Show All Packages</a>
+            <a class="btn btn-info" href="">Add New Package</a>
+        </p>*@
+        </div>
+    </div>
+
+</div>
+@section UploadScript{
+    <script src="~/scripts/jquery.form.min.js" type="text/javascript"></script>
+    <script>
+        (function () {
+            var bar = $('.progress-bar');
+            var percent = $('.progress-bar');
+            var status = $('#status');
+
+            $('#uploadform').ajaxForm({
+                beforeSend: function () {
+                    status.empty();
+                    var percentValue = '0%';
+                    bar.width(percentValue);
+                    percent.html(percentValue);
+                    //        alert("beforeSend");
+                },
+                uploadProgress: function (event, position, total, percentComplete) {
+                    var percentValue = percentComplete + '%';
+                    bar.width(percentValue);
+                    percent.html(percentValue);
+                    //  alert("UploadProgress");
+                },
+                success: function (d) {
+                    //          alert("suck");
+                    status.html(d);
+                    var percentValue = '100%';
+                    bar.width(percentValue);
+                    percent.html(percentValue);
+                    $('#fu1').val('');
+                    alert(d);
+                },
+                complete: function (xhr) {
+                    status.html(xhr.responseText);
+                }
+            });
+        })();
+    </script>
+}

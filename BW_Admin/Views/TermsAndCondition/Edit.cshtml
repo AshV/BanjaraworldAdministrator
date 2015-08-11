@@ -1,0 +1,91 @@
+﻿@model BW_Admin.tbl_TermsAndCondition
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="content">
+
+    <div class="module">
+        <div class="module-head">
+            <h3>Terms &amp; Condition</h3>
+        </div>
+        <div class="module-body">
+
+            @using (Html.BeginForm("Edit", "TermsAndCondition", FormMethod.Post, new { @class = "form-horizontal row-fluid", id = "mainForm" }))
+            {
+                
+
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.tnc_ID)
+
+                    <div class="control-group">
+                        <label class="control-label">Name</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.tnc_Name, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.tnc_Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Description</label>
+                        <div class="controls">
+                            @Html.TextAreaFor(model => model.tnc_Description, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.tnc_Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="col-md-offset-2 controls">
+                            <input type="submit" value="Update" data-loading-text="Upldating..." class="btn btn-success" id="btnMain" />
+                            <div id="statusMain"></div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </div>
+
+    <div class="module">
+        <div class="module-head">
+            <a href="~/TermsAndCondition/Details/@Model.tnc_ID">Go to Details</a> | <a href="~/TermsAndCondition">Go to List</a> | <a href="~/TermsAndCondition/Create">Add one more</a> | <a href="~/">Skip</a>
+        </div>
+    </div>
+
+</div>
+
+@section AsyncForms{
+    <script src="~/scripts/jquery.form.min.js" type="text/javascript"></script>
+
+    <script>
+        (function () {
+            var status;
+            var btn;
+
+            $('#mainForm').ajaxForm({
+                beforeSend: function () {
+                    btn = $('#btnMain');
+                    btn.button('loading');
+                    status = $('#statusMain');
+                },
+                success: function (d) {
+                    //     alert(d);
+                },
+                complete: function (xhr) {
+                    status.html(xhr.responseText);
+                    btn.button('reset');
+                }
+            });
+        })();
+    </script>
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

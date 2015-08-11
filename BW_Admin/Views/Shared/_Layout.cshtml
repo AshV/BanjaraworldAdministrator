@@ -1,0 +1,411 @@
+﻿@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title | Banajraworld Admin</title>
+    <link type="text/css" href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="~/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link type="text/css" href="~/css/theme.css" rel="stylesheet">
+    <link type="text/css" href="~/images/icons/css/font-awesome.css" rel="stylesheet">
+    <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600' rel='stylesheet'>
+    @RenderSection("Styles", required: false)
+    <style>
+        .hr {
+            height: 5px;
+        }
+
+        .lmenu {
+            border-radius: 2px;
+            padding: 12px 15px 12px 15px;
+            background-color: rgb(45, 43, 50);
+        }
+
+            .lmenu a {
+                color: grey;
+            }
+
+        div.lmenu:hover {
+            color: white;
+            background-color: rgb(20,20,20);
+            text-decoration: none;
+        }
+
+        div.lmenu a:hover {
+            text-decoration: none;
+            color: white;
+        }
+
+
+        .field-validation-error {
+            color: red;
+        }
+
+        .well {
+            padding: 5px;
+        }
+
+        .progress {
+            position: relative;
+            width: 100%;
+            border: 1px solid #ddd;
+            padding: 1px;
+        }
+
+        .progress-bar {
+            width: 0px;
+            height: 20px;
+            background-color: #00ff21;
+        }
+
+        #pbBG {
+            width: 0px;
+            height: 20px;
+            background-color: #00ff21;
+        }
+
+        #pbBI {
+            width: 0px;
+            height: 20px;
+            background-color: #00ff21;
+        }
+
+        #pbSI {
+            width: 0px;
+            height: 20px;
+            background-color: #00ff21;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+                    <i class="icon-reorder shaded"></i>
+                </a><a class="brand" href="~/">Banjaraworld Administrator </a>
+                <div class="nav-collapse collapse navbar-inverse-collapse">
+                    <ul class="nav nav-icons">
+                        <li class="active"><a href="http://webmail.banjaraworld.com/" target="_blank"><i class="icon-envelope"></i></a></li>
+                        <li class="active"><a href="http://www.google.com/analytics/" target="_blank"><i class="icon-bar-chart"></i></a></li>
+                    </ul>
+
+                    <ul class="nav pull-right">
+                        <li class="nav-user dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="~/images/user.png" class="nav-avatar" />
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a target="_blank" href="http://master.banjaraworld.com">Master Panel</a></li>
+                                <li class="divider"></li>
+                                <li><a href="~/Account/ChangePassword">Change Password</a></li>
+                                <li class="divider"></li>
+                                <li><a href="~/Account/Logout">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.nav-collapse -->
+            </div>
+        </div>
+        <!-- /navbar-inner -->
+    </div>
+    <!-- /navbar -->
+    <div class="wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="span3">
+                    <div class="sidebar">
+
+                        <ul class="widget widget-menu unstyled">
+                            <li class="active">
+                                <a href="/">
+                                    <i class="menu-icon icon-dashboard"></i>Dashboard
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div class="lmenu">
+                            <a title="Show All" data-toggle="tooltip" href="~/Category">
+                                <i class=" icon-2x icon-align-justify"></i>
+                                &nbsp;&nbsp;
+                                <font size="3%">Categories</font>
+                            </a>
+                            <a data-toggle="tooltip" title="Add New" href="~/Category/Create" style="float:right"><i class="icon-plus"></i></a>
+                        </div>
+                        <div class="hr"></div>
+
+                        <div class="lmenu">
+                            <a title="Show All" data-toggle="tooltip" href="~/Subcategory">
+                                <i class=" icon-2x icon-align-justify"></i>
+                                &nbsp;&nbsp;
+                                <font size="3%">Subcategories</font>
+                            </a>
+                            <a data-toggle="tooltip" title="Add New" href="~/Subcategory/Create" style="float:right"><i class="icon-plus"></i></a>
+                        </div>
+                        <div class="hr"></div>
+
+                        <div class="lmenu">
+                            <a title="Show All" data-toggle="tooltip" href="~/Place">
+                                <i class=" icon-2x icon-align-justify"></i>
+                                &nbsp;&nbsp;
+                                <font size="3%">Places</font>
+                            </a>
+                            <a data-toggle="tooltip" title="Add New" href="~/Place/Create" style="float:right"><i class="icon-plus"></i></a>
+                        </div>
+                        <div class="hr"></div>
+
+                        <div class="lmenu">
+                            <a title="Show All" data-toggle="tooltip" href="~/Tour">
+                                <i class=" icon-2x icon-align-justify"></i>
+                                &nbsp;&nbsp;
+                                <font size="3%">Tours</font>
+                            </a>
+                            <a data-toggle="tooltip" title="Add New" href="~/Tour/Create" style="float:right"><i class="icon-plus"></i></a>
+                        </div>
+                        <div class="hr"></div>
+
+                        <div class="lmenu">
+                            <a title="Show All" data-toggle="tooltip" href="~/FeaturedPackage">
+                                <i class=" icon-2x icon-align-justify"></i>
+                                &nbsp;&nbsp;
+                                <font size="3%">Featured Packages</font>
+                            </a>
+                            <a data-toggle="tooltip" title="Add New" href="~/FeaturedPackage/Create" style="float:right"><i class="icon-plus"></i></a>
+                        </div>
+                        <div class="hr"></div>
+
+                        <div class="lmenu">
+                            <a title="Show All" data-toggle="tooltip" href="~/Package">
+                                <i class=" icon-2x icon-align-justify"></i>
+                                &nbsp;&nbsp;
+                                <font size="3%">Packages</font>
+                            </a>
+                            <a data-toggle="tooltip" title="Add New" href="~/Package/Create" style="float:right"><i class="icon-plus"></i></a>
+                        </div>
+                        <div class="hr"></div>
+
+                        <div class="lmenu">
+                            <a title="Show All" data-toggle="tooltip" href="~/Exclusion">
+                                <i class=" icon-2x icon-align-justify"></i>
+                                &nbsp;&nbsp;
+                                <font size="3%">Exclusions</font>
+                            </a>
+                            <a data-toggle="tooltip" title="Add New" href="~/Exclusion/Create" style="float:right"><i class="icon-plus"></i></a>
+                        </div>
+                        <div class="hr"></div>
+
+                        <div class="lmenu">
+                            <a title="Show All" data-toggle="tooltip" href="~/CancelPolicy">
+                                <i class=" icon-2x icon-align-justify"></i>
+                                &nbsp;&nbsp;
+                                <font size="3%">Cancellation Policy</font>
+                            </a>
+                            <a data-toggle="tooltip" title="Add New" href="~/CancelPolicy/Create" style="float:right"><i class="icon-plus"></i></a>
+                        </div>
+                        <div class="hr"></div>
+
+                        <div class="lmenu">
+                            <a title="Show All" data-toggle="tooltip" href="~/TermsAndCondition">
+                                <i class=" icon-2x icon-align-justify"></i>
+                                &nbsp;&nbsp;
+                                <font size="3%">Terms &amp; Conditions</font>
+                            </a>
+                            <a data-toggle="tooltip" title="Add New" href="~/TermsAndCondition/Create" style="float:right"><i class="icon-plus"></i></a>
+                        </div>
+                        <div class="hr"></div>
+
+
+                        <ul class="widget widget-menu unstyled">
+
+                            <li><a href="/Account/Logout"><i class="menu-icon icon-signout"></i>Logout </a></li>
+                        </ul>
+
+                        @*<ul class="widget widget-menu unstyled">
+                                <li>
+                                    <a class="collapsed" data-toggle="collapse" href="#togglePages0">
+                                        <b class="label green">[0]</b>
+                                        <i class="icon-chevron-down pull-right"></i>
+                                        <i class="icon-chevron-up pull-right"></i>
+                                        Categories
+                                    </a>
+                                    <ul id="togglePages0" class="collapse unstyled">
+                                        <li><a href="~/Category/Index"><i class="icon-tasks"></i> Show All</a></li>
+                                        <li><a href="~/Category/Create"><i class="icon-book"></i> Add New</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="collapsed" data-toggle="collapse" href="#togglePages1">
+                                        <b class="label green">[1]</b>
+                                        <i class="icon-chevron-down pull-right"></i>
+                                        <i class="icon-chevron-up pull-right"></i>
+                                        Subcategories
+                                    </a>
+                                    <ul id="togglePages1" class="collapse unstyled">
+                                        <li><a href="~/Subcategory/Index"><i class="icon-tasks"></i> Show All</a></li>
+                                        <li><a href="~/Subcategory/Create"><i class="icon-book"></i> Add New</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="collapsed" data-toggle="collapse" href="#togglePages2">
+                                        <b class="label green">[2]</b>
+                                        <i class="icon-chevron-down pull-right"></i>
+                                        <i class="icon-chevron-up pull-right"></i>
+                                        Places
+                                    </a>
+                                    <ul id="togglePages2" class="collapse unstyled">
+                                        <li><a href="~/Place/Index"><i class="icon-tasks"></i> Show All</a></li>
+                                        <li><a href="~/Place/Create"><i class="icon-book"></i> Add New</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="collapsed" data-toggle="collapse" href="#togglePages3">
+                                        <b class="label green">[3]</b>
+                                        <i class="icon-chevron-down pull-right"></i>
+                                        <i class="icon-chevron-up pull-right"></i>
+                                        Tours
+                                    </a>
+                                    <ul id="togglePages3" class="collapse unstyled">
+                                        <li><a href="~/Tour/Index"><i class="icon-tasks"></i> Show All</a></li>
+                                        <li><a href="~/Tour/Create"><i class="icon-book"></i> Add New</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="collapsed" data-toggle="collapse" href="#togglePages4">
+                                        <b class="label green">[4]</b>
+                                        <i class="icon-chevron-down pull-right"></i>
+                                        <i class="icon-chevron-up pull-right"></i>
+                                        Featured Packages
+                                    </a>
+                                    <ul id="togglePages4" class="collapse unstyled">
+                                        <li><a href="~/FeaturedPackage/Index"><i class="icon-tasks"></i> Show All</a></li>
+                                        <li><a href="~/FeaturedPackage/Create"><i class="icon-book"></i> Add New</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="collapsed" data-toggle="collapse" href="#togglePages5">
+                                        <b class="label green">[5]</b>
+                                        <i class="icon-chevron-down pull-right"></i>
+                                        <i class="icon-chevron-up pull-right"></i>
+                                        Packages
+                                    </a>
+                                    <ul id="togglePages5" class="collapse unstyled">
+                                        <li><a href="~/Package/Index"><i class="icon-tasks"></i> Show All</a></li>
+                                        <li><a href="~/Package/Create"><i class="icon-book"></i> Add New</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="collapsed" data-toggle="collapse" href="#togglePages6">
+                                        <b class="label green">[6]</b>
+                                        <i class="icon-chevron-down pull-right"></i>
+                                        <i class="icon-chevron-up pull-right"></i>
+                                        Gallery
+                                    </a>
+                                    <ul id="togglePages6" class="collapse unstyled">
+                                        <li><a href="~/Gallery/Index"><i class="icon-tasks"></i> Show All</a></li>
+                                        <li><a href="~/Gallery/Create"><i class="icon-book"></i> Add New</a></li>
+                                    </ul>
+                                </li>
+
+
+                                <li>
+                                    <a class="collapsed" data-toggle="collapse" href="#togglePages7">
+                                        <b class="label green">[7]</b>
+                                        <i class="icon-chevron-down pull-right"></i>
+                                        <i class="icon-chevron-up pull-right"></i>
+                                        Exclusion
+                                    </a>
+                                    <ul id="togglePages7" class="collapse unstyled">
+                                        <li><a href="~/Exclusion/Index"><i class="icon-tasks"></i> Show All</a></li>
+                                        <li><a href="~/Exclusion/Create"><i class="icon-book"></i> Add New</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="collapsed" data-toggle="collapse" href="#togglePages8">
+                                        <b class="label green">[8]</b>
+                                        <i class="icon-chevron-down pull-right"></i>
+                                        <i class="icon-chevron-up pull-right"></i>
+                                        Cancellation Policy
+                                    </a>
+                                    <ul id="togglePages8" class="collapse unstyled">
+                                        <li><a href="~/CancelPolicy/Index"><i class="icon-tasks"></i> Show All</a></li>
+                                        <li><a href="~/CancelPolicy/Create"><i class="icon-book"></i> Add New</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="collapsed" data-toggle="collapse" href="#togglePages9">
+                                        <b class="label green">[9]</b>
+                                        <i class="icon-chevron-down pull-right"></i>
+                                        <i class="icon-chevron-up pull-right"></i>
+                                        Terms &amp; Conditions
+                                    </a>
+                                    <ul id="togglePages9" class="collapse unstyled">
+                                        <li><a href="~/TermsAndCondition/Index"><i class="icon-tasks"></i> Show All</a></li>
+                                        <li><a href="~/TermsAndCondition/Create"><i class="icon-book"></i> Add New</a></li>
+                                    </ul>
+                                </li>
+
+                            </ul>*@
+                    </div>
+                    <!--/.sidebar-->
+                </div>
+                <!--/.span3-->
+
+                <div class="span9">
+
+                    @RenderBody()
+
+                </div>
+                <!--/.span9-->
+            </div>
+        </div>
+        <!--/.container-->
+    </div>
+    <!--/.wrapper-->
+    <div class="footer">
+        <div class="container">
+            <b class="copyright">&copy; @DateTime.Now.Year Banjaraworld.com </b>All rights reserved.
+        </div>
+    </div>
+    <script src="~/scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="~/scripts/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+    <script src="~/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    @*<script src="~/scripts/flot/jquery.flot.js" type="text/javascript"></script>
+        <script src="~/scripts/flot/jquery.flot.resize.js" type="text/javascript"></script>*@
+    <script src="~/scripts/datatables/jquery.dataTables.js" type="text/javascript"></script>
+    @*<script src="~/scripts/common.js" type="text/javascript"></script>*@
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+            $('#example').DataTable();
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+    @RenderSection("Datatable", required: false)
+    @RenderSection("UploadScript", required: false)
+    @RenderSection("AsyncForms", required: false)
+    <script type="text/javascript" src="~/tinymce.min.js"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: "textarea",
+            theme: "modern",
+            plugins: [
+                "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                "searchreplace wordcount visualblocks visualchars code fullscreen",
+                "insertdatetime media nonbreaking save table contextmenu directionality",
+                "emoticons template paste textcolor colorpicker textpattern"
+            ],
+            toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+            toolbar2: "print preview media | forecolor backcolor emoticons",
+            image_advtab: true,
+            templates: [
+                { title: 'Test template 1', content: 'Test 1' },
+                { title: 'Test template 2', content: 'Test 2' }
+            ]
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,359 @@
+﻿@model BW_Admin.tbl_Category
+
+@{
+    ViewBag.Title = "Edit";
+    string BG = Model.cat_BackgroundImage1;
+    string BI = Model.cat_BannerImage;
+    string SI = Model.cat_SquareImage;
+}
+
+<div class="content">
+
+    <div class="module">
+        <div class="module-head">
+            <h3>Category</h3>
+        </div>
+        <div class="module-body">
+
+            @using (Html.BeginForm("Edit", "Category", FormMethod.Post, new { @class = "form-horizontal row-fluid", id = "mainForm" }))
+            {
+                
+
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.cat_ID)
+
+                    <div class="control-group">
+                        <label class="control-label">Category Name</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.cat_Name, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.cat_Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Description</label>
+                        <div class="controls">
+                            @Html.TextAreaFor(model => model.cat_Descripton, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.cat_Descripton, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Priority</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.cat_Priority, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.cat_Priority, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Active</label>
+                        <div class="controls">
+                            <div class="checkbox">
+                                @Html.EditorFor(model => model.cat_Active)
+                                @Html.ValidationMessageFor(model => model.cat_Active, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-group" style="display:none">
+                        <label class="control-label">Banner Image</label>})
+                        <div class="controls">
+                            @Html.EditorFor(model => model.cat_BannerImage, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.cat_BannerImage, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group" style="display:none">
+                        @Html.LabelFor(model => model.cat_SquareImage, htmlAttributes: new { @class = "span8" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.cat_SquareImage, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.cat_SquareImage, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group" style="display:none">
+                        @Html.LabelFor(model => model.cat_BackgroundImage1, htmlAttributes: new { @class = "span8" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.cat_BackgroundImage1, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.cat_BackgroundImage1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group" style="display:none">
+                        @Html.LabelFor(model => model.cat_BackgroundImage2, htmlAttributes: new { @class = "span8" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.cat_BackgroundImage2, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.cat_BackgroundImage2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="col-md-offset-2 controls">
+                            <input type="submit" value="Update" data-loading-text="Upldating..." class="btn btn-success" id="btnMain" />
+                            <div id="statusMain"></div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </div>
+
+    <div class="module">
+        <div class="module-head">
+            <h3>Update Images</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span9">
+            <div class="content">
+                <div class="btn-controls">
+                    <div class="btn-box-row row-fluid">
+                        <div href="#" class="btn-box big span6">
+                            <h5>Background Image</h5>
+                            <img id="imgBG" class="img-responsive" src="~/Pictures/@BG" />
+                            @using (Ajax.BeginForm("UploadImage", "A", new AjaxOptions() { HttpMethod = "POST" }, new { enctype = "multipart/form-data", id = "formBG" }))
+                            {
+                                ;
+                                <div class="progress">
+                                    <div class="progress-bar" id="pbBG">0%</div>
+                                </div>
+                                <div id="statusBG"></div>
+                                <input type="file" name="files" id="fuBG" />
+                                <input type="hidden" value="@BG" name="fileName" />
+                                <input type="submit" data-loading-text="Uploading..." id="btnBG" class="btn btn-success" value="Uplaod File" />
+                            }
+                        </div>
+                        <div href="#" class="btn-box big span6">
+                            <h5>Square Image</h5>
+                            <img id="imgSI" class="img-responsive" src="~/Pictures/@SI" />
+                            @using (Ajax.BeginForm("UploadImage", "A", new AjaxOptions() { HttpMethod = "POST" }, new { enctype = "multipart/form-data", id = "formSI" }))
+                            {
+                                ;
+                                <div class="progress">
+                                    <div class="progress-bar" id="pbSI">0%</div>
+                                </div>
+                                <div id="statusSI"></div>
+                                <input type="file" name="files" id="fuSI" />
+                                <input type="hidden" value="@SI" name="fileName" />
+                                <input type="submit" id="btnSI" data-loading-text="Uploading..." class="btn btn-success" value="Uplaod File" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="span9">
+            <div class="content">
+                <div class="btn-controls">
+                    <div class="btn-box-row row-fluid">
+                        <div href="#" class="btn-box big span12">
+                            <h5>Banner Image</h5>
+                            <img id="imgBI" class="img-responsive" src="~/Pictures/@BI" />
+                            @using (Ajax.BeginForm("UploadImage", "A", new AjaxOptions() { HttpMethod = "POST" }, new { enctype = "multipart/form-data", id = "formBI" }))
+                            {
+                                ;
+                                <div class="progress">
+                                    <div class="progress-bar" id="pbBI">0%</div>
+                                </div>
+                                <div id="statusBI"></div>
+                                <input type="file" name="files" id="fuBI" />
+                                <input type="hidden" value="@BI" name="fileName" />
+                                <input type="submit" data-loading-text="Uploading..." id="btnBI" class="btn btn-success" value="Uplaod File" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="module">
+        <div class="module-head">
+            <a href="~/Category/Details/@Model.cat_ID">Go to Details</a> | <a href="~/Category">Go to List</a> | <a href="~/Category/Create">Add one more</a> | <a href="~/">Skip</a>
+        </div>
+    </div>
+
+</div>
+
+<script src="~/Scripts/mootools.js"></script>
+
+<script>
+    window.addEvent('load', function () {
+        var handleFileSelect = function (evt) {
+            var name = evt.target.getAttribute("id");
+            var files = evt.target.files;
+            var file = files[0];
+            var size = (file.size / 1024).toFixed(2);
+            var height = 0;
+            var width = 0;
+            var sFileName = file.name;
+
+            var reader = new FileReader();
+
+            reader.onload = function (readerEvt) {
+                var binaryString = readerEvt.target.result;
+                if (name == "fuBG") {
+                    document.getElementById("imgBG").src = "data:image/jpeg;base64," + btoa(binaryString);
+                    height = document.getElementById("imgBG").naturalHeight;
+                    width = document.getElementById("imgBG").naturalWidth;
+                    document.getElementById("statusBG").innerHTML = "Size: " + size + "KB Height: " + height + " Width: " + width;
+                }
+                if (name == "fuBI") {
+                    document.getElementById("imgBI").src = "data:image/jpeg;base64," + btoa(binaryString);
+                    height = document.getElementById("imgBI").naturalHeight;
+                    width = document.getElementById("imgBI").naturalWidth;
+                    document.getElementById("statusBI").innerHTML = "Size: " + size + "KB Height: " + height + " Width: " + width;
+                }
+                if (name == "fuSI") {
+                    document.getElementById("imgSI").src = "data:image/jpeg;base64," + btoa(binaryString);
+                    height = document.getElementById("imgSI").naturalHeight;
+                    width = document.getElementById("imgSI").naturalWidth;
+                    document.getElementById("statusSI").innerHTML = "Size: " + size + "KB Height: " + height + " Width: " + width;
+                }
+            };
+            reader.readAsBinaryString(file);
+        };
+
+        if (window.File && window.FileReader && window.FileList && window.Blob) {
+            document.getElementById('fuBG').addEventListener('change', handleFileSelect, false);
+            document.getElementById('fuSI').addEventListener('change', handleFileSelect, false);
+            document.getElementById('fuBI').addEventListener('change', handleFileSelect, false);
+        }
+        else {
+            alert('The File APIs are not fully supported in this browser.');
+        }
+    });
+
+</script>
+
+@section UploadScript{
+    <script src="~/scripts/jquery.form.min.js" type="text/javascript"></script>
+
+    <script>
+        (function () {
+            var bar;
+            var percent;
+            var status;
+            var percentValue;
+            var btn;
+
+            $('#mainForm').ajaxForm({
+                beforeSend: function () {
+                    btn = $('#btnMain');
+                    btn.button('loading');
+                    status = $('#statusMain');
+                },
+                success: function (d) {
+                    //     alert(d);
+                },
+                complete: function (xhr) {
+                    status.html(xhr.responseText);
+                    btn.button('reset');
+                }
+            });
+
+            $('#formBG').ajaxForm({
+                beforeSend: function () {
+                    btn = $('#btnBG');
+                    btn.button('loading');
+                    bar = $('#pbBG');
+                    percent = $('#pbBG');
+                    status = $('#statusBG');
+                    status.empty();
+                    percentValue = '0%';
+                    bar.width(percentValue);
+                    percent.html(percentValue);
+                },
+                uploadProgress: function (event, position, total, percentComplete) {
+                    percentValue = percentComplete + '%';
+                    bar.width(percentValue);
+                    percent.html(percentValue);
+                },
+                success: function (d) {
+                    status.html(d);
+                    percentValue = '100%';
+                    bar.width(percentValue);
+                    percent.html(percentValue);
+                    $('#fuBG').val('');
+                },
+                complete: function (xhr) {
+                    status.html(xhr.responseText);
+                    btn.button('reset');
+                }
+            });
+
+            $('#formSI').ajaxForm({
+                beforeSend: function () {
+                    btn = $('#btnSI');
+                    btn.button('loading');
+                    bar = $('#pbSI');
+                    percent = $('#pbSI');
+                    status = $('#statusSI');
+                    status.empty();
+                    percentValue = '0%';
+                    bar.width(percentValue);
+                    percent.html(percentValue);
+                },
+                uploadProgress: function (event, position, total, percentComplete) {
+                    percentValue = percentComplete + '%';
+                    bar.width(percentValue);
+                    percent.html(percentValue);
+                },
+                success: function (d) {
+                   status.html(d);
+                    percentValue = '100%';
+                    bar.width(percentValue);
+                    percent.html(percentValue);
+                    $('#fu1').val('');
+                },
+                complete: function (xhr) {
+                    status.html(xhr.responseText);
+                    btn.button('reset');
+                }
+            });
+
+            $('#formBI').ajaxForm({
+                beforeSend: function () {
+                    btn = $('#btnBI');
+                    btn.button('loading');
+                    bar = $('#pbBI');
+                    percent = $('#pbBI');
+                    status = $('#statusBI');
+                    status.empty();
+                    percentValue = '0%';
+                    bar.width(percentValue);
+                    percent.html(percentValue);
+                },
+                uploadProgress: function (event, position, total, percentComplete) {
+                    var percentValue = percentComplete + '%';
+                    bar.width(percentValue);
+                    percent.html(percentValue);
+                },
+                success: function (d) {
+                    status.html(d);
+                    percentValue = '100%';
+                    bar.width(percentValue);
+                    percent.html(percentValue);
+                    $('#fuBI').val('');
+                },
+                complete: function (xhr) {
+                    status.html(xhr.responseText);
+                    btn.button('reset');
+                }
+            });
+        })();
+    </script>
+
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

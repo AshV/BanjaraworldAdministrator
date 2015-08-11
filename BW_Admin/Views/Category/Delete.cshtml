@@ -1,0 +1,112 @@
+﻿@model BW_Admin.tbl_Category
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            Category
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cat_Name)
+        </dd>
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.cat_Descripton)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.cat_Descripton)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.cat_Priority)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.cat_Priority)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.cat_Active)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.cat_Active)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.cat_BannerImage)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.cat_BannerImage)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.cat_SquareImage)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.cat_SquareImage)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.cat_BackgroundImage1)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.cat_BackgroundImage1)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.cat_BackgroundImage2)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.cat_BackgroundImage2)
+            </dd>*@
+
+    </dl>
+
+    @{
+        if (ViewBag.Deletable == "No")
+        {
+            <div class="well" id="dependency">
+                <h5>You need to clear following dependencies before deleting.</h5>
+              
+                <h5>Subcategories : </h5>
+                @foreach (tbl_Subcategory t in ViewBag.SubCats)
+                {
+                    <b>SubCategory : </b> @t.sct_Name <br />
+                }
+
+            </div>
+        }
+    }
+
+    @using (Html.BeginForm())
+    {
+        
+
+        <div class="form-actions no-color">
+            @if (ViewBag.Deletable == "No")
+            {
+                <input type="submit" value="Delete" disabled class="btn btn-danger" /> 
+            }
+            else
+            {
+                <input type="submit" value="Delete" class="btn btn-danger" /> 
+            }
+            |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

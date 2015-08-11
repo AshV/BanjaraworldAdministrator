@@ -1,0 +1,704 @@
+﻿@model BW_Admin.tbl_Package
+
+@{
+    ViewBag.Title = "Edit";
+
+    string BG = Model.pkg_BackgroundImage1;
+    string BI = Model.pkg_BannerImage;
+    string SI = Model.pkg_SquareImage;
+
+    string day1 = Model.pkg_DayHeading1;
+    string day2 = Model.pkg_DayHeading2;
+    string day3 = Model.pkg_DayHeading3;
+    string room1 = Model.pkg_Roomtype1;
+    string room2 = Model.pkg_Roomtype2;
+    string room3 = Model.pkg_Roomtype3;
+    string on = "On Season";
+    string off = "Off Season";
+
+    List<string> Coords = ViewBag.Coord;
+    List<string> Prices = ViewBag.Price;
+}
+
+<div class="content">
+
+    @*Text Field Updating*@
+    <div class="module">
+        <div class="module-head">
+            <h3>Package</h3>
+        </div>
+        <div class="module-body">
+
+            @using (Html.BeginForm("Edit", "Package", FormMethod.Post, new { @class = "form-horizontal row-fluid", id = "mainForm" }))
+            {
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.pkg_ID)
+
+                    <div class="control-group">
+                        <label class="control-label">Name</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.pkf_Name, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkf_Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Subtitle</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.pkg_Subtitle, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_Subtitle, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Subcategory</label>
+                        <div class="controls">
+                            @Html.DropDownList("pkg_SubcategoryFK", null, htmlAttributes: new { @class = "span8" })
+                            @Html.ValidationMessageFor(model => model.pkg_SubcategoryFK, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Overview</label>
+                        <div class="controls">
+                            @Html.TextAreaFor(model => model.pkg_Overview, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_Overview, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Description</label>
+                        <div class="controls">
+                            @Html.TextAreaFor(model => model.pkg_Description, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Inclusion</label>
+                        <div class="controls">
+                            @Html.TextAreaFor(model => model.pkg_Inclusion, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_Inclusion, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Default Season</label>
+                        <div class="controls">
+                            <div class="checkbox">
+                                @{
+                if (Model.pkg_DefaultSeason == true)
+                {
+                    @Html.Raw(@"<input type='radio' value='false' name='pkg_DefaultSeason' />  On Season
+                                    <input type='radio' value='true' name='pkg_DefaultSeason' checked />  Off Season");
+                }
+                else if (Model.pkg_DefaultSeason == false)
+                {
+                    @Html.Raw(@"<input type='radio' value='false' name='pkg_DefaultSeason' checked />  On Season
+                                    <input type='radio' value='true' name='pkg_DefaultSeason' />  Off Season");
+                }
+                else
+                {
+                    @Html.Raw(@"<input type='radio' value='false' name='pkg_DefaultSeason' />  On Season
+                                    <input type='radio' value='true' name='pkg_DefaultSeason' />  Off Season");
+                }
+                                }
+                                @*@Html.EditorFor(model => model.pkg_DefaultSeason)*@
+                                @Html.ValidationMessageFor(model => model.pkg_DefaultSeason, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Default Room</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.pkg_DefaultRoom, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_DefaultRoom, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Default Day</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.pkg_DefaultDay, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_DefaultDay, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Day Heading 1</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.pkg_DayHeading1, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_DayHeading1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Day Itinerary 1</label>
+                        <div class="controls">
+                            @Html.TextAreaFor(model => model.pkg_DayItinerary1, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_DayItinerary1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Day Heading 2</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.pkg_DayHeading2, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_DayHeading2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Day Itinerary 2</label>
+                        <div class="controls">
+                            @Html.TextAreaFor(model => model.pkg_DayItinerary2, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_DayItinerary2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Day Heading 3</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.pkg_DayHeading3, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_DayHeading3, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Day Itinerary 3</label>
+                        <div class="controls">
+                            @Html.TextAreaFor(model => model.pkg_DayItinerary3, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_DayItinerary3, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Room Type 1</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.pkg_Roomtype1, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_Roomtype1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Room Type 2</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.pkg_Roomtype2, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_Roomtype2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Room Type 3</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.pkg_Roomtype3, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_Roomtype3, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Priority</label>
+                        <div class="controls">
+                            @Html.EditorFor(model => model.pkg_Priority, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_Priority, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Active</label>
+                        <div class="controls">
+                            <div class="checkbox">
+                                @Html.EditorFor(model => model.pkg_Active)
+                                @Html.ValidationMessageFor(model => model.pkg_Active, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-group" style="display:none">
+                        @Html.LabelFor(model => model.pkg_BannerImage, htmlAttributes: new { @class = "span8" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.pkg_BannerImage, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_BannerImage, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group" style="display:none">
+                        @Html.LabelFor(model => model.pkg_SquareImage, htmlAttributes: new { @class = "span8" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.pkg_SquareImage, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_SquareImage, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group" style="display:none">
+                        @Html.LabelFor(model => model.pkg_BackgroundImage1, htmlAttributes: new { @class = "span8" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.pkg_BackgroundImage1, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_BackgroundImage1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group" style="display:none">
+                        @Html.LabelFor(model => model.pkg_BackgroundImage2, htmlAttributes: new { @class = "span8" })
+                        <div class="controls">
+                            @Html.EditorFor(model => model.pkg_BackgroundImage2, new { htmlAttributes = new { @class = "span8" } })
+                            @Html.ValidationMessageFor(model => model.pkg_BackgroundImage2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Exclusion</label>
+                        <div class="controls">
+                            @Html.DropDownList("pkg_ExclusionFK", null, htmlAttributes: new { @class = "span8" })
+                            @Html.ValidationMessageFor(model => model.pkg_ExclusionFK, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Terms &amp; Conditions</label>
+                        <div class="controls">
+                            @Html.DropDownList("pkg_TermsAndConditionFK", null, htmlAttributes: new { @class = "span8" })
+                            @Html.ValidationMessageFor(model => model.pkg_TermsAndConditionFK, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Cancel Policy</label>
+                        <div class="controls">
+                            @Html.DropDownList("pkg_CancelPolicyFK", null, htmlAttributes: new { @class = "span8" })
+                            @Html.ValidationMessageFor(model => model.pkg_CancelPolicyFK, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="col-md-offset-2 controls">
+                            <input type="submit" value="Update" data-loading-text="Upldating..." class="btn btn-success" id="btnMain" />
+                            <div id="statusMain"></div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </div>
+
+    @*Price Updation*@
+
+    <div class="module">
+        <div class="module-head">
+            <h3>Update Package Price</h3>
+        </div>
+        <div class="module-body">
+            <form class="form-horizontal row-fluid">
+
+                <div class="control-group">
+                    <label class="control-label">Days</label>
+                    <div class="controls">
+                        <label class="radio inline">
+                            <input class="pricePanel" type="radio" name="day" value="1" id="day1" title="2/3" />
+                            @day1
+                        </label>
+                        <label class="radio inline">
+                            <input class="pricePanel" type="radio" name="day" value="2" id="day2" title="3/4" />
+                            @day2
+                        </label>
+                        <label class="radio inline">
+                            <input class="pricePanel" type="radio" name="day" value="3" id="day3" title="4/5" />
+                            @day3
+                        </label>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Roomtype</label>
+                    <div class="controls">
+                        <label class="radio inline">
+                            <input class="pricePanel" type="radio" name="room" value="1" id="room1" title="Standard" />
+                            Standard
+                        </label>
+                        <label class="radio inline">
+                            <input class="pricePanel" type="radio" name="room" value="2" id="room2" title="Deluxe" />
+                            Deluxe
+                        </label>
+                        <label class="radio inline">
+                            <input class="pricePanel" type="radio" name="room" value="3" id="room3" title="Super Deluxe" />
+                            Super Deluxe
+                        </label>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Season</label>
+                    <div class="controls">
+                        <label class="radio inline">
+                            <input class="pricePanel" type="radio" name="season" value="1" id="season1" title="Off Season" />
+                            On Season
+                        </label>
+                        <label class="radio inline">
+                            <input class="pricePanel" type="radio" name="season" value="2" id="season2" title="On Season" />
+                            Off Season
+                        </label>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">Price</label>
+                    <div class="controls">
+                        <input class="span3" type="number" id="txtprice" />
+                        @*<input type="button" value="Update Price" class="btn" id="addprice" />*@
+                    </div>
+                </div>
+            </form>
+
+            <br />
+
+            @using (Html.BeginForm("UpdatePrices", "Package", FormMethod.Post, new { @class = "form-horizontal row-fluid", id = "priceForm" }))
+            {
+                <input type="hidden" value="@Model.pkg_ID" name="pid" />
+                <table class="table table-striped table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Days</th>
+                            <th>Room</th>
+                            <th>Season</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr> <td>1</td> <td>@day1</td> <td>@room1</td> <td>@on</td> <td> <input type="text" name="111" class="111" readonly="readonly" value="@Prices[0]" /> </td> </tr>
+                        <tr> <td>2</td> <td>@day1</td> <td>@room1</td> <td>@off</td> <td> <input type="text" name="112" class="112" readonly="readonly" value="@Prices[1]" /> </td> </tr>
+                        <tr> <td>3</td> <td>@day1</td> <td>@room2</td> <td>@on</td> <td> <input type="text" name="121" class="121" readonly="readonly" value="@Prices[2]" /> </td> </tr>
+                        <tr> <td>4</td> <td>@day1</td> <td>@room2</td> <td>@off</td> <td> <input type="text" name="122" class="122" readonly="readonly" value="@Prices[3]" /> </td> </tr>
+                        <tr> <td>5</td> <td>@day1</td> <td>@room3</td> <td>@on</td> <td> <input type="text" name="131" class="131" readonly="readonly" value="@Prices[4]" /> </td> </tr>
+                        <tr> <td>6</td> <td>@day1</td> <td>@room3</td> <td>@off</td> <td> <input type="text" name="132" class="132" readonly="readonly" value="@Prices[5]" /> </td> </tr>
+                        <tr> <td>7</td> <td>@day2</td> <td>@room1</td> <td>@on</td> <td> <input type="text" name="211" class="211" readonly="readonly" value="@Prices[6]" /> </td> </tr>
+                        <tr> <td>8</td> <td>@day2</td> <td>@room1</td> <td>@off</td> <td> <input type="text" name="212" class="212" readonly="readonly" value="@Prices[7]" /> </td> </tr>
+                        <tr> <td>9</td> <td>@day2</td> <td>@room2</td> <td>@on</td> <td> <input type="text" name="221" class="221" readonly="readonly" value="@Prices[8]" /> </td> </tr>
+                        <tr> <td>10</td> <td>@day2</td> <td>@room2</td> <td>@off</td> <td> <input type="text" name="222" class="222" readonly="readonly" value="@Prices[9]" /> </td> </tr>
+                        <tr> <td>11</td> <td>@day2</td> <td>@room3</td> <td>@on</td> <td> <input type="text" name="231" class="231" readonly="readonly" value="@Prices[10]" /> </td> </tr>
+                        <tr> <td>12</td> <td>@day2</td> <td>@room3</td> <td>@off</td> <td> <input type="text" name="232" class="232" readonly="readonly" value="@Prices[11]" /> </td> </tr>
+                        <tr> <td>13</td> <td>@day3</td> <td>@room1</td> <td>@on</td> <td> <input type="text" name="311" class="311" readonly="readonly" value="@Prices[12]" /> </td> </tr>
+                        <tr> <td>14</td> <td>@day3</td> <td>@room1</td> <td>@off</td> <td> <input type="text" name="312" class="312" readonly="readonly" value="@Prices[13]" /> </td> </tr>
+                        <tr> <td>15</td> <td>@day3</td> <td>@room2</td> <td>@on</td> <td> <input type="text" name="321" class="321" readonly="readonly" value="@Prices[14]" /> </td> </tr>
+                        <tr> <td>16</td> <td>@day3</td> <td>@room2</td> <td>@off</td> <td> <input type="text" name="322" class="322" readonly="readonly" value="@Prices[15]" /> </td> </tr>
+                        <tr> <td>17</td> <td>@day3</td> <td>@room3</td> <td>@on</td> <td> <input type="text" name="331" class="331" readonly="readonly" value="@Prices[16]" /> </td> </tr>
+                        <tr> <td>18</td> <td>@day3</td> <td>@room3</td> <td>@off</td> <td> <input type="text" name="332" class="332" readonly="readonly" value="@Prices[17]" /> </td> </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div class="control-group">
+                    <label class="control-label"></label>
+                    <div class="controls">
+                        <input type="submit" data-loading-text="Updating..." value="Update Price" class="btn btn-success" id="addprice" />
+                        <div id="statusPrice"></div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+    @*Images Updating*@
+    <div class="module">
+        <div class="module-head">
+            <h3>Update Images</h3>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="span9">
+            <div class="content">
+                <div class="btn-controls">
+                    <div class="btn-box-row row-fluid">
+                        <div href="#" class="btn-box big span6">
+                            <h5>Background Image</h5>
+                            <img id="imgBG" class="img-responsive" src="~/Pictures/@BG" />
+                            @using (Ajax.BeginForm("UploadImage", "A", new AjaxOptions() { HttpMethod = "POST" }, new { enctype = "multipart/form-data", id = "formBG" }))
+                            {
+                                <div class="progress">
+                                    <div class="progress-bar" id="pbBG">0%</div>
+                                </div>
+                                <div id="statusBG"></div>
+                                <input type="file" name="files" id="fuBG" />
+                                <input type="hidden" value="@BG" name="fileName" />
+                                <input type="submit" data-loading-text="Uploading..." id="btnBG" class="btn btn-success" value="Uplaod File" />
+                            }
+                        </div>
+                        <div href="#" class="btn-box big span6">
+                            <h5>Square Image</h5>
+                            <img id="imgSI" class="img-responsive" src="~/Pictures/@SI" />
+                            @using (Ajax.BeginForm("UploadImage", "A", new AjaxOptions() { HttpMethod = "POST" }, new { enctype = "multipart/form-data", id = "formSI" }))
+                            {
+                                <div class="progress">
+                                    <div class="progress-bar" id="pbSI">0%</div>
+                                </div>
+                                <div id="statusSI"></div>
+                                <input type="file" name="files" id="fuSI" />
+                                <input type="hidden" value="@SI" name="fileName" />
+                                <input type="submit" data-loading-text="Uploading..." id="btnSI" class="btn btn-success" value="Uplaod File" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="span9">
+            <div class="content">
+                <div class="btn-controls">
+                    <div class="btn-box-row row-fluid">
+                        <div href="#" class="btn-box big span12">
+                            <h5>Banner Image</h5>
+                            <img id="imgBI" class="img-responsive" src="~/Pictures/@BI" />
+                            @using (Ajax.BeginForm("UploadImage", "A", new AjaxOptions() { HttpMethod = "POST" }, new { enctype = "multipart/form-data", id = "formBI" }))
+                            {
+                                <div class="progress">
+                                    <div class="progress-bar" id="pbBI">0%</div>
+                                </div>
+                                <div id="statusBI"></div>
+                                <input type="file" name="files" id="fuBI" />
+                                <input type="hidden" value="@BI" name="fileName" />
+                                <input type="submit" data-loading-text="Uploading..." id="btnBI" class="btn btn-success" value="Uplaod File" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="module">
+        <div class="module-head">
+            <a href="~/Package/Details/@Model.pkg_ID">Go to Details</a> | <a href="~/Package">Go to List</a> | <a href="~/Package/Create">Add one more</a> | <a href="~/">Skip</a>
+        </div>
+    </div>
+
+</div>
+
+<script src="~/Scripts/mootools.js"></script>
+
+<script>
+    window.addEvent('load', function () {
+        var handleFileSelect = function (evt) {
+            var name = evt.target.getAttribute("id");
+            var files = evt.target.files;
+            var file = files[0];
+            var size = (file.size / 1024).toFixed(2);
+            var height = 0;
+            var width = 0;
+            var sFileName = file.name;
+
+            var reader = new FileReader();
+
+            reader.onload = function (readerEvt) {
+                var binaryString = readerEvt.target.result;
+                if (name == "fuBG") {
+                    document.getElementById("imgBG").src = "data:image/jpeg;base64," + btoa(binaryString);
+                    height = document.getElementById("imgBG").naturalHeight;
+                    width = document.getElementById("imgBG").naturalWidth;
+                    document.getElementById("statusBG").innerHTML = "Size: " + size + "KB Height: " + height + " Width: " + width;
+                }
+                if (name == "fuBI") {
+                    document.getElementById("imgBI").src = "data:image/jpeg;base64," + btoa(binaryString);
+                    height = document.getElementById("imgBI").naturalHeight;
+                    width = document.getElementById("imgBI").naturalWidth;
+                    document.getElementById("statusBI").innerHTML = "Size: " + size + "KB Height: " + height + " Width: " + width;
+                }
+                if (name == "fuSI") {
+                    document.getElementById("imgSI").src = "data:image/jpeg;base64," + btoa(binaryString);
+                    height = document.getElementById("imgSI").naturalHeight;
+                    width = document.getElementById("imgSI").naturalWidth;
+                    document.getElementById("statusSI").innerHTML = "Size: " + size + "KB Height: " + height + " Width: " + width;
+                }
+            };
+            reader.readAsBinaryString(file);
+        };
+
+        if (window.File && window.FileReader && window.FileList && window.Blob) {
+            document.getElementById('fuBG').addEventListener('change', handleFileSelect, false);
+            document.getElementById('fuSI').addEventListener('change', handleFileSelect, false);
+            document.getElementById('fuBI').addEventListener('change', handleFileSelect, false);
+        }
+        else {
+            alert('The File APIs are not fully supported in this browser.');
+        }
+    });
+
+</script>
+
+<script>
+
+    @{
+        @Html.Raw("var prices={")
+    for (int i = 0; i < Coords.Count; i++)
+    {
+        @Html.Raw('"' + Coords[i] + '"' + " : " + '"' + Prices[i] + '"' + ',')
+    }
+    @Html.Raw("}")
+}
+</script>
+
+@section UploadScript{
+
+    <script>
+
+
+        $(document).ready(function () {
+            var key;
+            $(".pricePanel").change(function () {
+                key = $('input[name="day"]:checked').val() + $('input[name="room"]:checked').val() + $('input[name="season"]:checked').val();
+                $("." + key).val(prices[key]);
+                $("#txtprice").val(prices[key]);
+            });
+            $("#txtprice").keyup(function () {
+                prices[key] = $("#txtprice").val();
+                $("." + key).val(prices[key]);
+            });
+        });
+    </script>
+
+
+    <script src="~/scripts/jquery.form.min.js" type="text/javascript"></script>
+
+    <script>
+        (function () {
+            var bar;
+            var percent;
+            var status;
+            var percentValue;
+            var btn;
+
+            $('#mainForm').ajaxForm({
+                beforeSend: function () {
+                    btn = $('#btnMain');
+                    btn.button('loading');
+                    status = $('#statusMain');
+                },
+                success: function (d) {
+                    //     alert(d);
+                },
+                complete: function (xhr) {
+                    status.html(xhr.responseText);
+                    btn.button('reset');
+                }
+            });
+
+            $('#priceForm').ajaxForm({
+                beforeSend: function () {
+                    btn = $('#addprice');
+                    btn.button('loading');
+                    status = $('#statusPrice');
+                },
+                success: function (d) {
+                    //   alert(d);
+                },
+                complete: function (xhr) {
+                    status.html(xhr.responseText);
+                    btn.button('reset');
+                }
+            });
+
+            $('#formBG').ajaxForm({
+                beforeSend: function () {
+                    btn = $('#btnBG');
+                    btn.button('loading');
+                    bar = $('#pbBG');
+                    percent = $('#pbBG');
+                    status = $('#statusBG');
+                    status.empty();
+                    percentValue = '0%';
+                    bar.width(percentValue);
+                    percent.html(percentValue);
+                },
+                uploadProgress: function (event, position, total, percentComplete) {
+                    percentValue = percentComplete + '%';
+                    bar.width(percentValue);
+                    percent.html(percentValue);
+                },
+                success: function (d) {
+                    status.html(d);
+                    percentValue = '100%';
+                    bar.width(percentValue);
+                    percent.html(percentValue);
+                    $('#fuBG').val('');
+                },
+                complete: function (xhr) {
+                    status.html(xhr.responseText);
+                    btn.button('reset');
+                }
+            });
+
+            $('#formSI').ajaxForm({
+                beforeSend: function () {
+                    btn = $('#btnSI');
+                    btn.button('loading');
+                    bar = $('#pbSI');
+                    percent = $('#pbSI');
+                    status = $('#statusSI');
+                    status.empty();
+                    percentValue = '0%';
+                    bar.width(percentValue);
+                    percent.html(percentValue);
+                },
+                uploadProgress: function (event, position, total, percentComplete) {
+                    percentValue = percentComplete + '%';
+                    bar.width(percentValue);
+                    percent.html(percentValue);
+                },
+                success: function (d) {
+                    status.html(d);
+                    percentValue = '100%';
+                    bar.width(percentValue);
+                    percent.html(percentValue);
+                    $('#fu1').val('');
+                },
+                complete: function (xhr) {
+                    status.html(xhr.responseText);
+                    btn.button('reset');
+                }
+            });
+
+            $('#formBI').ajaxForm({
+                beforeSend: function () {
+                    btn = $('#btnBI');
+                    btn.button('loading');
+                    bar = $('#pbBI');
+                    percent = $('#pbBI');
+                    status = $('#statusBI');
+                    status.empty();
+                    percentValue = '0%';
+                    bar.width(percentValue);
+                    percent.html(percentValue);
+                },
+                uploadProgress: function (event, position, total, percentComplete) {
+                    var percentValue = percentComplete + '%';
+                    bar.width(percentValue);
+                    percent.html(percentValue);
+                },
+                success: function (d) {
+                    status.html(d);
+                    percentValue = '100%';
+                    bar.width(percentValue);
+                    percent.html(percentValue);
+                    $('#fuBI').val('');
+                },
+                complete: function (xhr) {
+                    status.html(xhr.responseText);
+                    btn.button('reset');
+                }
+            });
+        })();
+    </script>
+
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

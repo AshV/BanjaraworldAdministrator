@@ -1,0 +1,94 @@
+﻿@model BW_Admin.tbl_Subcategory
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="content">
+    <div class="module">
+        <div class="module-head">    <h3>Subcategory</h3>    </div>   <div class="module-body">
+
+            <div>
+
+                <h5>
+                    Name
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.sct_Name)
+                </div>
+
+                <h5>
+                    Descripton
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.sct_Descripton)
+                </div>
+
+                <h5>
+                    Priority
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.sct_Priority)
+                </div>
+
+                <h5>
+                    Active
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.sct_Active)
+                </div>
+
+                <h5>
+                    Banner Image
+                </h5>
+
+                <div class="well">
+                    <img class="img-responsive" src="~/Pictures/@Model.sct_BannerImage" />
+
+                </div>
+
+                <h5>
+                    Square Image
+                </h5>
+
+                <div class="well">
+                    <img class="img-responsive" src="~/Pictures/@Model.sct_SquareImage" />
+                </div>
+
+                <h5>
+                    Background Image 1
+                </h5>
+
+                <div class="well">
+                    <img class="img-responsive" src="~/Pictures/@Model.sct_BackgroundImage1" />
+                </div>
+
+                <h5>
+                    Background Image 2
+                </h5>
+
+                <div class="well">
+                    <img class="img-responsive" src="~/Pictures/@Model.sct_BackgroundImage2" />
+                </div>
+
+                <h5>
+                    tbl_Category.cat_Name)
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.tbl_Category.cat_Name)
+                </div>
+
+
+            </div>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.sct_ID }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    </div>
+</div>

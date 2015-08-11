@@ -1,0 +1,36 @@
+﻿@model BW_Admin.tbl_FeaturedPackage
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <dl class="dl-horizontal">
+        @*<dt>
+            @Html.DisplayNameFor(model => model.ftp_Priority)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ftp_Priority)
+        </dd>*@
+
+        <dt>
+            Featured Package Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_Package.pkf_Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

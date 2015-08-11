@@ -1,0 +1,944 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Chandan_Banjara_WorldModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_Account">
+          <Key>
+            <PropertyRef Name="acc_UserID" />
+          </Key>
+          <Property Name="acc_UserID" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="acc_Password" Type="nvarchar" MaxLength="25" />
+          <Property Name="acc_Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_CancelPolicy">
+          <Key>
+            <PropertyRef Name="cnp_ID" />
+          </Key>
+          <Property Name="cnp_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cnp_Name" Type="nvarchar" MaxLength="25" />
+          <Property Name="cnp_Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_Category">
+          <Key>
+            <PropertyRef Name="cat_ID" />
+          </Key>
+          <Property Name="cat_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cat_Name" Type="nvarchar" MaxLength="25" />
+          <Property Name="cat_Descripton" Type="nvarchar(max)" />
+          <Property Name="cat_Priority" Type="int" />
+          <Property Name="cat_Active" Type="bit" />
+          <Property Name="cat_BannerImage" Type="nvarchar" MaxLength="50" />
+          <Property Name="cat_SquareImage" Type="nvarchar" MaxLength="50" />
+          <Property Name="cat_BackgroundImage1" Type="nvarchar" MaxLength="50" />
+          <Property Name="cat_BackgroundImage2" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_Exclusion">
+          <Key>
+            <PropertyRef Name="exc_ID" />
+          </Key>
+          <Property Name="exc_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="exc_Name" Type="nvarchar" MaxLength="25" />
+          <Property Name="exc_Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_FeaturedPackage">
+          <Key>
+            <PropertyRef Name="ftp_ID" />
+          </Key>
+          <Property Name="ftp_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ftp_PlaceFK" Type="int" />
+          <Property Name="ftp_Priority" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Gallery">
+          <Key>
+            <PropertyRef Name="glr_ID" />
+          </Key>
+          <Property Name="glr_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="glr_Image" Type="nvarchar" MaxLength="100" />
+          <Property Name="glr_Description" Type="nvarchar" MaxLength="25" />
+          <Property Name="glr_Type" Type="nvarchar" MaxLength="25" />
+          <Property Name="glr_PlaceID" Type="int" />
+          <Property Name="glr_PackageID" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Package">
+          <Key>
+            <PropertyRef Name="pkg_ID" />
+          </Key>
+          <Property Name="pkg_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pkf_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="pkg_Subtitle" Type="nvarchar" MaxLength="250" />
+          <Property Name="pkg_Overview" Type="nvarchar(max)" />
+          <Property Name="pkg_Description" Type="nvarchar(max)" />
+          <Property Name="pkg_Inclusion" Type="nvarchar(max)" />
+          <Property Name="pkg_DefaultSeason" Type="bit" />
+          <Property Name="pkg_DefaultRoom" Type="nvarchar" MaxLength="1" />
+          <Property Name="pkg_DefaultDay" Type="nvarchar" MaxLength="1" />
+          <Property Name="pkg_DayHeading1" Type="nvarchar" MaxLength="25" />
+          <Property Name="pkg_DayItinerary1" Type="nvarchar(max)" />
+          <Property Name="pkg_DayHeading2" Type="nvarchar" MaxLength="25" />
+          <Property Name="pkg_DayItinerary2" Type="nvarchar(max)" />
+          <Property Name="pkg_DayHeading3" Type="nvarchar" MaxLength="25" />
+          <Property Name="pkg_DayItinerary3" Type="nvarchar(max)" />
+          <Property Name="pkg_Roomtype1" Type="nvarchar" MaxLength="25" />
+          <Property Name="pkg_Roomtype2" Type="nvarchar" MaxLength="25" />
+          <Property Name="pkg_Roomtype3" Type="nvarchar" MaxLength="25" />
+          <Property Name="pkg_Priority" Type="int" />
+          <Property Name="pkg_Active" Type="bit" />
+          <Property Name="pkg_BannerImage" Type="nvarchar" MaxLength="50" />
+          <Property Name="pkg_SquareImage" Type="nvarchar" MaxLength="50" />
+          <Property Name="pkg_BackgroundImage1" Type="nvarchar" MaxLength="50" />
+          <Property Name="pkg_BackgroundImage2" Type="nvarchar" MaxLength="50" />
+          <Property Name="pkg_ExclusionFK" Type="int" />
+          <Property Name="pkg_TermsAndConditionFK" Type="int" />
+          <Property Name="pkg_CancelPolicyFK" Type="int" />
+          <Property Name="pkg_SubcategoryFK" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Place">
+          <Key>
+            <PropertyRef Name="plc_ID" />
+          </Key>
+          <Property Name="plc_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="plc_Description" Type="nvarchar(max)" />
+          <Property Name="plc_TimeToVisit" Type="nvarchar" MaxLength="100" />
+          <Property Name="plc_Location" Type="nvarchar" MaxLength="100" />
+          <Property Name="plc_Priority" Type="int" />
+          <Property Name="plc_Active" Type="bit" />
+          <Property Name="plc_BannerImage" Type="nvarchar" MaxLength="50" />
+          <Property Name="plc_SquareImage" Type="nvarchar" MaxLength="50" />
+          <Property Name="plc_BackgroundImage1" Type="nvarchar" MaxLength="50" />
+          <Property Name="plc_BackgroundImage2" Type="nvarchar" MaxLength="50" />
+          <Property Name="plc_Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_PlacePackage">
+          <Key>
+            <PropertyRef Name="plg_PackageID" />
+            <PropertyRef Name="plg_PlaceID" />
+          </Key>
+          <Property Name="plg_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="plg_PackageID" Type="int" Nullable="false" />
+          <Property Name="plg_PlaceID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Price">
+          <Key>
+            <PropertyRef Name="prc_ID" />
+          </Key>
+          <Property Name="prc_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="prc_Coordinate" Type="nvarchar" MaxLength="11" />
+          <Property Name="prc_PackageId" Type="int" />
+          <Property Name="prc_Price" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Subcategory">
+          <Key>
+            <PropertyRef Name="sct_ID" />
+          </Key>
+          <Property Name="sct_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sct_Name" Type="nvarchar" MaxLength="25" />
+          <Property Name="sct_CategoryFK" Type="int" />
+          <Property Name="sct_Descripton" Type="nvarchar(max)" />
+          <Property Name="sct_Priority" Type="int" />
+          <Property Name="sct_Active" Type="bit" />
+          <Property Name="sct_BannerImage" Type="nvarchar" MaxLength="50" />
+          <Property Name="sct_SquareImage" Type="nvarchar" MaxLength="50" />
+          <Property Name="sct_BackgroundImage1" Type="nvarchar" MaxLength="50" />
+          <Property Name="sct_BackgroundImage2" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_TermsAndCondition">
+          <Key>
+            <PropertyRef Name="tnc_ID" />
+          </Key>
+          <Property Name="tnc_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tnc_Name" Type="nvarchar" MaxLength="25" />
+          <Property Name="tnc_Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_Tour">
+          <Key>
+            <PropertyRef Name="tor_ID" />
+          </Key>
+          <Property Name="tor_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tor_Overview" Type="nvarchar(max)" />
+          <Property Name="tor_Description" Type="nvarchar(max)" />
+          <Property Name="tor_Priority" Type="int" />
+          <Property Name="tor_Active" Type="bit" />
+          <Property Name="tor_BannerImage" Type="nvarchar" MaxLength="50" />
+          <Property Name="tor_SquareImage" Type="nvarchar" MaxLength="50" />
+          <Property Name="tor_BackgroundImage1" Type="nvarchar" MaxLength="50" />
+          <Property Name="tor_BackgroundImage2" Type="nvarchar" MaxLength="50" />
+          <Property Name="tor_Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="ftd_PlaceID_FK">
+          <End Role="tbl_Package" Type="Self.tbl_Package" Multiplicity="0..1" />
+          <End Role="tbl_FeaturedPackage" Type="Self.tbl_FeaturedPackage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Package">
+              <PropertyRef Name="pkg_ID" />
+            </Principal>
+            <Dependent Role="tbl_FeaturedPackage">
+              <PropertyRef Name="ftp_PlaceFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="glr_PackageID_FK">
+          <End Role="tbl_Package" Type="Self.tbl_Package" Multiplicity="0..1" />
+          <End Role="tbl_Gallery" Type="Self.tbl_Gallery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Package">
+              <PropertyRef Name="pkg_ID" />
+            </Principal>
+            <Dependent Role="tbl_Gallery">
+              <PropertyRef Name="glr_PackageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="glr_PlaceID_FK">
+          <End Role="tbl_Place" Type="Self.tbl_Place" Multiplicity="0..1" />
+          <End Role="tbl_Gallery" Type="Self.tbl_Gallery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Place">
+              <PropertyRef Name="plc_ID" />
+            </Principal>
+            <Dependent Role="tbl_Gallery">
+              <PropertyRef Name="glr_PlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pkg_CancelPolicy_FK">
+          <End Role="tbl_CancelPolicy" Type="Self.tbl_CancelPolicy" Multiplicity="0..1" />
+          <End Role="tbl_Package" Type="Self.tbl_Package" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_CancelPolicy">
+              <PropertyRef Name="cnp_ID" />
+            </Principal>
+            <Dependent Role="tbl_Package">
+              <PropertyRef Name="pkg_CancelPolicyFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pkg_Subcategory_FK">
+          <End Role="tbl_Subcategory" Type="Self.tbl_Subcategory" Multiplicity="0..1" />
+          <End Role="tbl_Package" Type="Self.tbl_Package" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Subcategory">
+              <PropertyRef Name="sct_ID" />
+            </Principal>
+            <Dependent Role="tbl_Package">
+              <PropertyRef Name="pkg_SubcategoryFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pkg_TermsAndCondions_FK">
+          <End Role="tbl_TermsAndCondition" Type="Self.tbl_TermsAndCondition" Multiplicity="0..1" />
+          <End Role="tbl_Package" Type="Self.tbl_Package" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_TermsAndCondition">
+              <PropertyRef Name="tnc_ID" />
+            </Principal>
+            <Dependent Role="tbl_Package">
+              <PropertyRef Name="pkg_TermsAndConditionFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="plg_PackageID_FK">
+          <End Role="tbl_Package" Type="Self.tbl_Package" Multiplicity="1" />
+          <End Role="tbl_PlacePackage" Type="Self.tbl_PlacePackage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Package">
+              <PropertyRef Name="pkg_ID" />
+            </Principal>
+            <Dependent Role="tbl_PlacePackage">
+              <PropertyRef Name="plg_PackageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="plg_PlaceID_FK">
+          <End Role="tbl_Place" Type="Self.tbl_Place" Multiplicity="1" />
+          <End Role="tbl_PlacePackage" Type="Self.tbl_PlacePackage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Place">
+              <PropertyRef Name="plc_ID" />
+            </Principal>
+            <Dependent Role="tbl_PlacePackage">
+              <PropertyRef Name="plg_PlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="prc_PackageID_FK">
+          <End Role="tbl_Package" Type="Self.tbl_Package" Multiplicity="0..1" />
+          <End Role="tbl_Price" Type="Self.tbl_Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Package">
+              <PropertyRef Name="pkg_ID" />
+            </Principal>
+            <Dependent Role="tbl_Price">
+              <PropertyRef Name="prc_PackageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sct_CategoryID_FK">
+          <End Role="tbl_Category" Type="Self.tbl_Category" Multiplicity="0..1" />
+          <End Role="tbl_Subcategory" Type="Self.tbl_Subcategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Category">
+              <PropertyRef Name="cat_ID" />
+            </Principal>
+            <Dependent Role="tbl_Subcategory">
+              <PropertyRef Name="sct_CategoryFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="try_FK">
+          <End Role="tbl_Exclusion" Type="Self.tbl_Exclusion" Multiplicity="0..1" />
+          <End Role="tbl_Package" Type="Self.tbl_Package" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Exclusion">
+              <PropertyRef Name="exc_ID" />
+            </Principal>
+            <Dependent Role="tbl_Package">
+              <PropertyRef Name="pkg_ExclusionFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Chandan_Banjara_WorldModelStoreContainer">
+          <EntitySet Name="tbl_Account" EntityType="Self.tbl_Account" Schema="Chandan_Banjara_User" store:Type="Tables" />
+          <EntitySet Name="tbl_CancelPolicy" EntityType="Self.tbl_CancelPolicy" Schema="Chandan_Banjara_User" store:Type="Tables" />
+          <EntitySet Name="tbl_Category" EntityType="Self.tbl_Category" Schema="Chandan_Banjara_User" store:Type="Tables" />
+          <EntitySet Name="tbl_Exclusion" EntityType="Self.tbl_Exclusion" Schema="Chandan_Banjara_User" store:Type="Tables" />
+          <EntitySet Name="tbl_FeaturedPackage" EntityType="Self.tbl_FeaturedPackage" Schema="Chandan_Banjara_User" store:Type="Tables" />
+          <EntitySet Name="tbl_Gallery" EntityType="Self.tbl_Gallery" Schema="Chandan_Banjara_User" store:Type="Tables" />
+          <EntitySet Name="tbl_Package" EntityType="Self.tbl_Package" Schema="Chandan_Banjara_User" store:Type="Tables" />
+          <EntitySet Name="tbl_Place" EntityType="Self.tbl_Place" Schema="Chandan_Banjara_User" store:Type="Tables" />
+          <EntitySet Name="tbl_PlacePackage" EntityType="Self.tbl_PlacePackage" Schema="Chandan_Banjara_User" store:Type="Tables" />
+          <EntitySet Name="tbl_Price" EntityType="Self.tbl_Price" Schema="Chandan_Banjara_User" store:Type="Tables" />
+          <EntitySet Name="tbl_Subcategory" EntityType="Self.tbl_Subcategory" Schema="Chandan_Banjara_User" store:Type="Tables" />
+          <EntitySet Name="tbl_TermsAndCondition" EntityType="Self.tbl_TermsAndCondition" Schema="Chandan_Banjara_User" store:Type="Tables" />
+          <EntitySet Name="tbl_Tour" EntityType="Self.tbl_Tour" Schema="Chandan_Banjara_User" store:Type="Tables" />
+          <AssociationSet Name="ftd_PlaceID_FK" Association="Self.ftd_PlaceID_FK">
+            <End Role="tbl_Package" EntitySet="tbl_Package" />
+            <End Role="tbl_FeaturedPackage" EntitySet="tbl_FeaturedPackage" />
+          </AssociationSet>
+          <AssociationSet Name="glr_PackageID_FK" Association="Self.glr_PackageID_FK">
+            <End Role="tbl_Package" EntitySet="tbl_Package" />
+            <End Role="tbl_Gallery" EntitySet="tbl_Gallery" />
+          </AssociationSet>
+          <AssociationSet Name="glr_PlaceID_FK" Association="Self.glr_PlaceID_FK">
+            <End Role="tbl_Place" EntitySet="tbl_Place" />
+            <End Role="tbl_Gallery" EntitySet="tbl_Gallery" />
+          </AssociationSet>
+          <AssociationSet Name="pkg_CancelPolicy_FK" Association="Self.pkg_CancelPolicy_FK">
+            <End Role="tbl_CancelPolicy" EntitySet="tbl_CancelPolicy" />
+            <End Role="tbl_Package" EntitySet="tbl_Package" />
+          </AssociationSet>
+          <AssociationSet Name="pkg_Subcategory_FK" Association="Self.pkg_Subcategory_FK">
+            <End Role="tbl_Subcategory" EntitySet="tbl_Subcategory" />
+            <End Role="tbl_Package" EntitySet="tbl_Package" />
+          </AssociationSet>
+          <AssociationSet Name="pkg_TermsAndCondions_FK" Association="Self.pkg_TermsAndCondions_FK">
+            <End Role="tbl_TermsAndCondition" EntitySet="tbl_TermsAndCondition" />
+            <End Role="tbl_Package" EntitySet="tbl_Package" />
+          </AssociationSet>
+          <AssociationSet Name="plg_PackageID_FK" Association="Self.plg_PackageID_FK">
+            <End Role="tbl_Package" EntitySet="tbl_Package" />
+            <End Role="tbl_PlacePackage" EntitySet="tbl_PlacePackage" />
+          </AssociationSet>
+          <AssociationSet Name="plg_PlaceID_FK" Association="Self.plg_PlaceID_FK">
+            <End Role="tbl_Place" EntitySet="tbl_Place" />
+            <End Role="tbl_PlacePackage" EntitySet="tbl_PlacePackage" />
+          </AssociationSet>
+          <AssociationSet Name="prc_PackageID_FK" Association="Self.prc_PackageID_FK">
+            <End Role="tbl_Package" EntitySet="tbl_Package" />
+            <End Role="tbl_Price" EntitySet="tbl_Price" />
+          </AssociationSet>
+          <AssociationSet Name="sct_CategoryID_FK" Association="Self.sct_CategoryID_FK">
+            <End Role="tbl_Category" EntitySet="tbl_Category" />
+            <End Role="tbl_Subcategory" EntitySet="tbl_Subcategory" />
+          </AssociationSet>
+          <AssociationSet Name="try_FK" Association="Self.try_FK">
+            <End Role="tbl_Exclusion" EntitySet="tbl_Exclusion" />
+            <End Role="tbl_Package" EntitySet="tbl_Package" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Chandan_Banjara_WorldModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_Account">
+          <Key>
+            <PropertyRef Name="acc_UserID" />
+          </Key>
+          <Property Name="acc_UserID" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="acc_Password" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="acc_Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_CancelPolicy">
+          <Key>
+            <PropertyRef Name="cnp_ID" />
+          </Key>
+          <Property Name="cnp_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cnp_Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="cnp_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Package" Relationship="Self.pkg_CancelPolicy_FK" FromRole="tbl_CancelPolicy" ToRole="tbl_Package" />
+        </EntityType>
+        <EntityType Name="tbl_Category">
+          <Key>
+            <PropertyRef Name="cat_ID" />
+          </Key>
+          <Property Name="cat_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cat_Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="cat_Descripton" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="cat_Priority" Type="Int32" />
+          <Property Name="cat_Active" Type="Boolean" />
+          <Property Name="cat_BannerImage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cat_SquareImage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cat_BackgroundImage1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cat_BackgroundImage2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Subcategory" Relationship="Self.sct_CategoryID_FK" FromRole="tbl_Category" ToRole="tbl_Subcategory" />
+        </EntityType>
+        <EntityType Name="tbl_Exclusion">
+          <Key>
+            <PropertyRef Name="exc_ID" />
+          </Key>
+          <Property Name="exc_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="exc_Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="exc_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Package" Relationship="Self.try_FK" FromRole="tbl_Exclusion" ToRole="tbl_Package" />
+        </EntityType>
+        <EntityType Name="tbl_FeaturedPackage">
+          <Key>
+            <PropertyRef Name="ftp_ID" />
+          </Key>
+          <Property Name="ftp_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ftp_PlaceFK" Type="Int32" />
+          <Property Name="ftp_Priority" Type="Int32" />
+          <NavigationProperty Name="tbl_Package" Relationship="Self.ftd_PlaceID_FK" FromRole="tbl_FeaturedPackage" ToRole="tbl_Package" />
+        </EntityType>
+        <EntityType Name="tbl_Gallery">
+          <Key>
+            <PropertyRef Name="glr_ID" />
+          </Key>
+          <Property Name="glr_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="glr_Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="glr_Description" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="glr_Type" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="glr_PlaceID" Type="Int32" />
+          <Property Name="glr_PackageID" Type="Int32" />
+          <NavigationProperty Name="tbl_Package" Relationship="Self.glr_PackageID_FK" FromRole="tbl_Gallery" ToRole="tbl_Package" />
+          <NavigationProperty Name="tbl_Place" Relationship="Self.glr_PlaceID_FK" FromRole="tbl_Gallery" ToRole="tbl_Place" />
+        </EntityType>
+        <EntityType Name="tbl_Package">
+          <Key>
+            <PropertyRef Name="pkg_ID" />
+          </Key>
+          <Property Name="pkg_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pkf_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pkg_Subtitle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="pkg_Overview" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="pkg_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="pkg_Inclusion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="pkg_DefaultSeason" Type="Boolean" />
+          <Property Name="pkg_DefaultRoom" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="pkg_DefaultDay" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="pkg_DayHeading1" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="pkg_DayItinerary1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="pkg_DayHeading2" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="pkg_DayItinerary2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="pkg_DayHeading3" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="pkg_DayItinerary3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="pkg_Roomtype1" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="pkg_Roomtype2" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="pkg_Roomtype3" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="pkg_Priority" Type="Int32" />
+          <Property Name="pkg_Active" Type="Boolean" />
+          <Property Name="pkg_BannerImage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pkg_SquareImage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pkg_BackgroundImage1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pkg_BackgroundImage2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pkg_ExclusionFK" Type="Int32" />
+          <Property Name="pkg_TermsAndConditionFK" Type="Int32" />
+          <Property Name="pkg_CancelPolicyFK" Type="Int32" />
+          <Property Name="pkg_SubcategoryFK" Type="Int32" />
+          <NavigationProperty Name="tbl_CancelPolicy" Relationship="Self.pkg_CancelPolicy_FK" FromRole="tbl_Package" ToRole="tbl_CancelPolicy" />
+          <NavigationProperty Name="tbl_Exclusion" Relationship="Self.try_FK" FromRole="tbl_Package" ToRole="tbl_Exclusion" />
+          <NavigationProperty Name="tbl_FeaturedPackage" Relationship="Self.ftd_PlaceID_FK" FromRole="tbl_Package" ToRole="tbl_FeaturedPackage" />
+          <NavigationProperty Name="tbl_Gallery" Relationship="Self.glr_PackageID_FK" FromRole="tbl_Package" ToRole="tbl_Gallery" />
+          <NavigationProperty Name="tbl_Subcategory" Relationship="Self.pkg_Subcategory_FK" FromRole="tbl_Package" ToRole="tbl_Subcategory" />
+          <NavigationProperty Name="tbl_TermsAndCondition" Relationship="Self.pkg_TermsAndCondions_FK" FromRole="tbl_Package" ToRole="tbl_TermsAndCondition" />
+          <NavigationProperty Name="tbl_PlacePackage" Relationship="Self.plg_PackageID_FK" FromRole="tbl_Package" ToRole="tbl_PlacePackage" />
+          <NavigationProperty Name="tbl_Price" Relationship="Self.prc_PackageID_FK" FromRole="tbl_Package" ToRole="tbl_Price" />
+        </EntityType>
+        <EntityType Name="tbl_Place">
+          <Key>
+            <PropertyRef Name="plc_ID" />
+          </Key>
+          <Property Name="plc_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="plc_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="plc_TimeToVisit" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="plc_Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="plc_Priority" Type="Int32" />
+          <Property Name="plc_Active" Type="Boolean" />
+          <Property Name="plc_BannerImage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="plc_SquareImage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="plc_BackgroundImage1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="plc_BackgroundImage2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="plc_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Gallery" Relationship="Self.glr_PlaceID_FK" FromRole="tbl_Place" ToRole="tbl_Gallery" />
+          <NavigationProperty Name="tbl_PlacePackage" Relationship="Self.plg_PlaceID_FK" FromRole="tbl_Place" ToRole="tbl_PlacePackage" />
+        </EntityType>
+        <EntityType Name="tbl_PlacePackage">
+          <Key>
+            <PropertyRef Name="plg_PackageID" />
+            <PropertyRef Name="plg_PlaceID" />
+          </Key>
+          <Property Name="plg_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="plg_PackageID" Type="Int32" Nullable="false" />
+          <Property Name="plg_PlaceID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_Package" Relationship="Self.plg_PackageID_FK" FromRole="tbl_PlacePackage" ToRole="tbl_Package" />
+          <NavigationProperty Name="tbl_Place" Relationship="Self.plg_PlaceID_FK" FromRole="tbl_PlacePackage" ToRole="tbl_Place" />
+        </EntityType>
+        <EntityType Name="tbl_Price">
+          <Key>
+            <PropertyRef Name="prc_ID" />
+          </Key>
+          <Property Name="prc_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="prc_Coordinate" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="prc_PackageId" Type="Int32" />
+          <Property Name="prc_Price" Type="Int32" />
+          <NavigationProperty Name="tbl_Package" Relationship="Self.prc_PackageID_FK" FromRole="tbl_Price" ToRole="tbl_Package" />
+        </EntityType>
+        <EntityType Name="tbl_Subcategory">
+          <Key>
+            <PropertyRef Name="sct_ID" />
+          </Key>
+          <Property Name="sct_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sct_Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="sct_CategoryFK" Type="Int32" />
+          <Property Name="sct_Descripton" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sct_Priority" Type="Int32" />
+          <Property Name="sct_Active" Type="Boolean" />
+          <Property Name="sct_BannerImage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sct_SquareImage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sct_BackgroundImage1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sct_BackgroundImage2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Category" Relationship="Self.sct_CategoryID_FK" FromRole="tbl_Subcategory" ToRole="tbl_Category" />
+          <NavigationProperty Name="tbl_Package" Relationship="Self.pkg_Subcategory_FK" FromRole="tbl_Subcategory" ToRole="tbl_Package" />
+        </EntityType>
+        <EntityType Name="tbl_TermsAndCondition">
+          <Key>
+            <PropertyRef Name="tnc_ID" />
+          </Key>
+          <Property Name="tnc_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tnc_Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="tnc_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_Package" Relationship="Self.pkg_TermsAndCondions_FK" FromRole="tbl_TermsAndCondition" ToRole="tbl_Package" />
+        </EntityType>
+        <EntityType Name="tbl_Tour">
+          <Key>
+            <PropertyRef Name="tor_ID" />
+          </Key>
+          <Property Name="tor_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tor_Overview" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tor_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tor_Priority" Type="Int32" />
+          <Property Name="tor_Active" Type="Boolean" />
+          <Property Name="tor_BannerImage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tor_SquareImage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tor_BackgroundImage1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tor_BackgroundImage2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tor_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="pkg_CancelPolicy_FK">
+          <End Role="tbl_CancelPolicy" Type="Self.tbl_CancelPolicy" Multiplicity="0..1" />
+          <End Role="tbl_Package" Type="Self.tbl_Package" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_CancelPolicy">
+              <PropertyRef Name="cnp_ID" />
+            </Principal>
+            <Dependent Role="tbl_Package">
+              <PropertyRef Name="pkg_CancelPolicyFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sct_CategoryID_FK">
+          <End Role="tbl_Category" Type="Self.tbl_Category" Multiplicity="0..1" />
+          <End Role="tbl_Subcategory" Type="Self.tbl_Subcategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Category">
+              <PropertyRef Name="cat_ID" />
+            </Principal>
+            <Dependent Role="tbl_Subcategory">
+              <PropertyRef Name="sct_CategoryFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="try_FK">
+          <End Role="tbl_Exclusion" Type="Self.tbl_Exclusion" Multiplicity="0..1" />
+          <End Role="tbl_Package" Type="Self.tbl_Package" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Exclusion">
+              <PropertyRef Name="exc_ID" />
+            </Principal>
+            <Dependent Role="tbl_Package">
+              <PropertyRef Name="pkg_ExclusionFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ftd_PlaceID_FK">
+          <End Role="tbl_Package" Type="Self.tbl_Package" Multiplicity="0..1" />
+          <End Role="tbl_FeaturedPackage" Type="Self.tbl_FeaturedPackage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Package">
+              <PropertyRef Name="pkg_ID" />
+            </Principal>
+            <Dependent Role="tbl_FeaturedPackage">
+              <PropertyRef Name="ftp_PlaceFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="glr_PackageID_FK">
+          <End Role="tbl_Package" Type="Self.tbl_Package" Multiplicity="0..1" />
+          <End Role="tbl_Gallery" Type="Self.tbl_Gallery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Package">
+              <PropertyRef Name="pkg_ID" />
+            </Principal>
+            <Dependent Role="tbl_Gallery">
+              <PropertyRef Name="glr_PackageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="glr_PlaceID_FK">
+          <End Role="tbl_Place" Type="Self.tbl_Place" Multiplicity="0..1" />
+          <End Role="tbl_Gallery" Type="Self.tbl_Gallery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Place">
+              <PropertyRef Name="plc_ID" />
+            </Principal>
+            <Dependent Role="tbl_Gallery">
+              <PropertyRef Name="glr_PlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pkg_Subcategory_FK">
+          <End Role="tbl_Subcategory" Type="Self.tbl_Subcategory" Multiplicity="0..1" />
+          <End Role="tbl_Package" Type="Self.tbl_Package" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Subcategory">
+              <PropertyRef Name="sct_ID" />
+            </Principal>
+            <Dependent Role="tbl_Package">
+              <PropertyRef Name="pkg_SubcategoryFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pkg_TermsAndCondions_FK">
+          <End Role="tbl_TermsAndCondition" Type="Self.tbl_TermsAndCondition" Multiplicity="0..1" />
+          <End Role="tbl_Package" Type="Self.tbl_Package" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_TermsAndCondition">
+              <PropertyRef Name="tnc_ID" />
+            </Principal>
+            <Dependent Role="tbl_Package">
+              <PropertyRef Name="pkg_TermsAndConditionFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="plg_PackageID_FK">
+          <End Role="tbl_Package" Type="Self.tbl_Package" Multiplicity="1" />
+          <End Role="tbl_PlacePackage" Type="Self.tbl_PlacePackage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Package">
+              <PropertyRef Name="pkg_ID" />
+            </Principal>
+            <Dependent Role="tbl_PlacePackage">
+              <PropertyRef Name="plg_PackageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="prc_PackageID_FK">
+          <End Role="tbl_Package" Type="Self.tbl_Package" Multiplicity="0..1" />
+          <End Role="tbl_Price" Type="Self.tbl_Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Package">
+              <PropertyRef Name="pkg_ID" />
+            </Principal>
+            <Dependent Role="tbl_Price">
+              <PropertyRef Name="prc_PackageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="plg_PlaceID_FK">
+          <End Role="tbl_Place" Type="Self.tbl_Place" Multiplicity="1" />
+          <End Role="tbl_PlacePackage" Type="Self.tbl_PlacePackage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Place">
+              <PropertyRef Name="plc_ID" />
+            </Principal>
+            <Dependent Role="tbl_PlacePackage">
+              <PropertyRef Name="plg_PlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Chandan_Banjara_WorldEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_Account" EntityType="Self.tbl_Account" />
+          <EntitySet Name="tbl_CancelPolicy" EntityType="Self.tbl_CancelPolicy" />
+          <EntitySet Name="tbl_Category" EntityType="Self.tbl_Category" />
+          <EntitySet Name="tbl_Exclusion" EntityType="Self.tbl_Exclusion" />
+          <EntitySet Name="tbl_FeaturedPackage" EntityType="Self.tbl_FeaturedPackage" />
+          <EntitySet Name="tbl_Gallery" EntityType="Self.tbl_Gallery" />
+          <EntitySet Name="tbl_Package" EntityType="Self.tbl_Package" />
+          <EntitySet Name="tbl_Place" EntityType="Self.tbl_Place" />
+          <EntitySet Name="tbl_PlacePackage" EntityType="Self.tbl_PlacePackage" />
+          <EntitySet Name="tbl_Price" EntityType="Self.tbl_Price" />
+          <EntitySet Name="tbl_Subcategory" EntityType="Self.tbl_Subcategory" />
+          <EntitySet Name="tbl_TermsAndCondition" EntityType="Self.tbl_TermsAndCondition" />
+          <EntitySet Name="tbl_Tour" EntityType="Self.tbl_Tour" />
+          <AssociationSet Name="pkg_CancelPolicy_FK" Association="Self.pkg_CancelPolicy_FK">
+            <End Role="tbl_CancelPolicy" EntitySet="tbl_CancelPolicy" />
+            <End Role="tbl_Package" EntitySet="tbl_Package" />
+          </AssociationSet>
+          <AssociationSet Name="sct_CategoryID_FK" Association="Self.sct_CategoryID_FK">
+            <End Role="tbl_Category" EntitySet="tbl_Category" />
+            <End Role="tbl_Subcategory" EntitySet="tbl_Subcategory" />
+          </AssociationSet>
+          <AssociationSet Name="try_FK" Association="Self.try_FK">
+            <End Role="tbl_Exclusion" EntitySet="tbl_Exclusion" />
+            <End Role="tbl_Package" EntitySet="tbl_Package" />
+          </AssociationSet>
+          <AssociationSet Name="ftd_PlaceID_FK" Association="Self.ftd_PlaceID_FK">
+            <End Role="tbl_Package" EntitySet="tbl_Package" />
+            <End Role="tbl_FeaturedPackage" EntitySet="tbl_FeaturedPackage" />
+          </AssociationSet>
+          <AssociationSet Name="glr_PackageID_FK" Association="Self.glr_PackageID_FK">
+            <End Role="tbl_Package" EntitySet="tbl_Package" />
+            <End Role="tbl_Gallery" EntitySet="tbl_Gallery" />
+          </AssociationSet>
+          <AssociationSet Name="glr_PlaceID_FK" Association="Self.glr_PlaceID_FK">
+            <End Role="tbl_Place" EntitySet="tbl_Place" />
+            <End Role="tbl_Gallery" EntitySet="tbl_Gallery" />
+          </AssociationSet>
+          <AssociationSet Name="pkg_Subcategory_FK" Association="Self.pkg_Subcategory_FK">
+            <End Role="tbl_Subcategory" EntitySet="tbl_Subcategory" />
+            <End Role="tbl_Package" EntitySet="tbl_Package" />
+          </AssociationSet>
+          <AssociationSet Name="pkg_TermsAndCondions_FK" Association="Self.pkg_TermsAndCondions_FK">
+            <End Role="tbl_TermsAndCondition" EntitySet="tbl_TermsAndCondition" />
+            <End Role="tbl_Package" EntitySet="tbl_Package" />
+          </AssociationSet>
+          <AssociationSet Name="plg_PackageID_FK" Association="Self.plg_PackageID_FK">
+            <End Role="tbl_Package" EntitySet="tbl_Package" />
+            <End Role="tbl_PlacePackage" EntitySet="tbl_PlacePackage" />
+          </AssociationSet>
+          <AssociationSet Name="prc_PackageID_FK" Association="Self.prc_PackageID_FK">
+            <End Role="tbl_Package" EntitySet="tbl_Package" />
+            <End Role="tbl_Price" EntitySet="tbl_Price" />
+          </AssociationSet>
+          <AssociationSet Name="plg_PlaceID_FK" Association="Self.plg_PlaceID_FK">
+            <End Role="tbl_Place" EntitySet="tbl_Place" />
+            <End Role="tbl_PlacePackage" EntitySet="tbl_PlacePackage" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Chandan_Banjara_WorldModelStoreContainer" CdmEntityContainer="Chandan_Banjara_WorldEntities">
+          <EntitySetMapping Name="tbl_Account">
+            <EntityTypeMapping TypeName="Chandan_Banjara_WorldModel.tbl_Account">
+              <MappingFragment StoreEntitySet="tbl_Account">
+                <ScalarProperty Name="acc_UserID" ColumnName="acc_UserID" />
+                <ScalarProperty Name="acc_Password" ColumnName="acc_Password" />
+                <ScalarProperty Name="acc_Active" ColumnName="acc_Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CancelPolicy">
+            <EntityTypeMapping TypeName="Chandan_Banjara_WorldModel.tbl_CancelPolicy">
+              <MappingFragment StoreEntitySet="tbl_CancelPolicy">
+                <ScalarProperty Name="cnp_ID" ColumnName="cnp_ID" />
+                <ScalarProperty Name="cnp_Name" ColumnName="cnp_Name" />
+                <ScalarProperty Name="cnp_Description" ColumnName="cnp_Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Category">
+            <EntityTypeMapping TypeName="Chandan_Banjara_WorldModel.tbl_Category">
+              <MappingFragment StoreEntitySet="tbl_Category">
+                <ScalarProperty Name="cat_ID" ColumnName="cat_ID" />
+                <ScalarProperty Name="cat_Name" ColumnName="cat_Name" />
+                <ScalarProperty Name="cat_Descripton" ColumnName="cat_Descripton" />
+                <ScalarProperty Name="cat_Priority" ColumnName="cat_Priority" />
+                <ScalarProperty Name="cat_Active" ColumnName="cat_Active" />
+                <ScalarProperty Name="cat_BannerImage" ColumnName="cat_BannerImage" />
+                <ScalarProperty Name="cat_SquareImage" ColumnName="cat_SquareImage" />
+                <ScalarProperty Name="cat_BackgroundImage1" ColumnName="cat_BackgroundImage1" />
+                <ScalarProperty Name="cat_BackgroundImage2" ColumnName="cat_BackgroundImage2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Exclusion">
+            <EntityTypeMapping TypeName="Chandan_Banjara_WorldModel.tbl_Exclusion">
+              <MappingFragment StoreEntitySet="tbl_Exclusion">
+                <ScalarProperty Name="exc_ID" ColumnName="exc_ID" />
+                <ScalarProperty Name="exc_Name" ColumnName="exc_Name" />
+                <ScalarProperty Name="exc_Description" ColumnName="exc_Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_FeaturedPackage">
+            <EntityTypeMapping TypeName="Chandan_Banjara_WorldModel.tbl_FeaturedPackage">
+              <MappingFragment StoreEntitySet="tbl_FeaturedPackage">
+                <ScalarProperty Name="ftp_ID" ColumnName="ftp_ID" />
+                <ScalarProperty Name="ftp_PlaceFK" ColumnName="ftp_PlaceFK" />
+                <ScalarProperty Name="ftp_Priority" ColumnName="ftp_Priority" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Gallery">
+            <EntityTypeMapping TypeName="Chandan_Banjara_WorldModel.tbl_Gallery">
+              <MappingFragment StoreEntitySet="tbl_Gallery">
+                <ScalarProperty Name="glr_ID" ColumnName="glr_ID" />
+                <ScalarProperty Name="glr_Image" ColumnName="glr_Image" />
+                <ScalarProperty Name="glr_Description" ColumnName="glr_Description" />
+                <ScalarProperty Name="glr_Type" ColumnName="glr_Type" />
+                <ScalarProperty Name="glr_PlaceID" ColumnName="glr_PlaceID" />
+                <ScalarProperty Name="glr_PackageID" ColumnName="glr_PackageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Package">
+            <EntityTypeMapping TypeName="Chandan_Banjara_WorldModel.tbl_Package">
+              <MappingFragment StoreEntitySet="tbl_Package">
+                <ScalarProperty Name="pkg_ID" ColumnName="pkg_ID" />
+                <ScalarProperty Name="pkf_Name" ColumnName="pkf_Name" />
+                <ScalarProperty Name="pkg_Subtitle" ColumnName="pkg_Subtitle" />
+                <ScalarProperty Name="pkg_Overview" ColumnName="pkg_Overview" />
+                <ScalarProperty Name="pkg_Description" ColumnName="pkg_Description" />
+                <ScalarProperty Name="pkg_Inclusion" ColumnName="pkg_Inclusion" />
+                <ScalarProperty Name="pkg_DefaultSeason" ColumnName="pkg_DefaultSeason" />
+                <ScalarProperty Name="pkg_DefaultRoom" ColumnName="pkg_DefaultRoom" />
+                <ScalarProperty Name="pkg_DefaultDay" ColumnName="pkg_DefaultDay" />
+                <ScalarProperty Name="pkg_DayHeading1" ColumnName="pkg_DayHeading1" />
+                <ScalarProperty Name="pkg_DayItinerary1" ColumnName="pkg_DayItinerary1" />
+                <ScalarProperty Name="pkg_DayHeading2" ColumnName="pkg_DayHeading2" />
+                <ScalarProperty Name="pkg_DayItinerary2" ColumnName="pkg_DayItinerary2" />
+                <ScalarProperty Name="pkg_DayHeading3" ColumnName="pkg_DayHeading3" />
+                <ScalarProperty Name="pkg_DayItinerary3" ColumnName="pkg_DayItinerary3" />
+                <ScalarProperty Name="pkg_Roomtype1" ColumnName="pkg_Roomtype1" />
+                <ScalarProperty Name="pkg_Roomtype2" ColumnName="pkg_Roomtype2" />
+                <ScalarProperty Name="pkg_Roomtype3" ColumnName="pkg_Roomtype3" />
+                <ScalarProperty Name="pkg_Priority" ColumnName="pkg_Priority" />
+                <ScalarProperty Name="pkg_Active" ColumnName="pkg_Active" />
+                <ScalarProperty Name="pkg_BannerImage" ColumnName="pkg_BannerImage" />
+                <ScalarProperty Name="pkg_SquareImage" ColumnName="pkg_SquareImage" />
+                <ScalarProperty Name="pkg_BackgroundImage1" ColumnName="pkg_BackgroundImage1" />
+                <ScalarProperty Name="pkg_BackgroundImage2" ColumnName="pkg_BackgroundImage2" />
+                <ScalarProperty Name="pkg_ExclusionFK" ColumnName="pkg_ExclusionFK" />
+                <ScalarProperty Name="pkg_TermsAndConditionFK" ColumnName="pkg_TermsAndConditionFK" />
+                <ScalarProperty Name="pkg_CancelPolicyFK" ColumnName="pkg_CancelPolicyFK" />
+                <ScalarProperty Name="pkg_SubcategoryFK" ColumnName="pkg_SubcategoryFK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Place">
+            <EntityTypeMapping TypeName="Chandan_Banjara_WorldModel.tbl_Place">
+              <MappingFragment StoreEntitySet="tbl_Place">
+                <ScalarProperty Name="plc_ID" ColumnName="plc_ID" />
+                <ScalarProperty Name="plc_Description" ColumnName="plc_Description" />
+                <ScalarProperty Name="plc_TimeToVisit" ColumnName="plc_TimeToVisit" />
+                <ScalarProperty Name="plc_Location" ColumnName="plc_Location" />
+                <ScalarProperty Name="plc_Priority" ColumnName="plc_Priority" />
+                <ScalarProperty Name="plc_Active" ColumnName="plc_Active" />
+                <ScalarProperty Name="plc_BannerImage" ColumnName="plc_BannerImage" />
+                <ScalarProperty Name="plc_SquareImage" ColumnName="plc_SquareImage" />
+                <ScalarProperty Name="plc_BackgroundImage1" ColumnName="plc_BackgroundImage1" />
+                <ScalarProperty Name="plc_BackgroundImage2" ColumnName="plc_BackgroundImage2" />
+                <ScalarProperty Name="plc_Name" ColumnName="plc_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_PlacePackage">
+            <EntityTypeMapping TypeName="Chandan_Banjara_WorldModel.tbl_PlacePackage">
+              <MappingFragment StoreEntitySet="tbl_PlacePackage">
+                <ScalarProperty Name="plg_ID" ColumnName="plg_ID" />
+                <ScalarProperty Name="plg_PackageID" ColumnName="plg_PackageID" />
+                <ScalarProperty Name="plg_PlaceID" ColumnName="plg_PlaceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Price">
+            <EntityTypeMapping TypeName="Chandan_Banjara_WorldModel.tbl_Price">
+              <MappingFragment StoreEntitySet="tbl_Price">
+                <ScalarProperty Name="prc_ID" ColumnName="prc_ID" />
+                <ScalarProperty Name="prc_Coordinate" ColumnName="prc_Coordinate" />
+                <ScalarProperty Name="prc_PackageId" ColumnName="prc_PackageId" />
+                <ScalarProperty Name="prc_Price" ColumnName="prc_Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Subcategory">
+            <EntityTypeMapping TypeName="Chandan_Banjara_WorldModel.tbl_Subcategory">
+              <MappingFragment StoreEntitySet="tbl_Subcategory">
+                <ScalarProperty Name="sct_ID" ColumnName="sct_ID" />
+                <ScalarProperty Name="sct_Name" ColumnName="sct_Name" />
+                <ScalarProperty Name="sct_CategoryFK" ColumnName="sct_CategoryFK" />
+                <ScalarProperty Name="sct_Descripton" ColumnName="sct_Descripton" />
+                <ScalarProperty Name="sct_Priority" ColumnName="sct_Priority" />
+                <ScalarProperty Name="sct_Active" ColumnName="sct_Active" />
+                <ScalarProperty Name="sct_BannerImage" ColumnName="sct_BannerImage" />
+                <ScalarProperty Name="sct_SquareImage" ColumnName="sct_SquareImage" />
+                <ScalarProperty Name="sct_BackgroundImage1" ColumnName="sct_BackgroundImage1" />
+                <ScalarProperty Name="sct_BackgroundImage2" ColumnName="sct_BackgroundImage2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_TermsAndCondition">
+            <EntityTypeMapping TypeName="Chandan_Banjara_WorldModel.tbl_TermsAndCondition">
+              <MappingFragment StoreEntitySet="tbl_TermsAndCondition">
+                <ScalarProperty Name="tnc_ID" ColumnName="tnc_ID" />
+                <ScalarProperty Name="tnc_Name" ColumnName="tnc_Name" />
+                <ScalarProperty Name="tnc_Description" ColumnName="tnc_Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Tour">
+            <EntityTypeMapping TypeName="Chandan_Banjara_WorldModel.tbl_Tour">
+              <MappingFragment StoreEntitySet="tbl_Tour">
+                <ScalarProperty Name="tor_ID" ColumnName="tor_ID" />
+                <ScalarProperty Name="tor_Overview" ColumnName="tor_Overview" />
+                <ScalarProperty Name="tor_Description" ColumnName="tor_Description" />
+                <ScalarProperty Name="tor_Priority" ColumnName="tor_Priority" />
+                <ScalarProperty Name="tor_Active" ColumnName="tor_Active" />
+                <ScalarProperty Name="tor_BannerImage" ColumnName="tor_BannerImage" />
+                <ScalarProperty Name="tor_SquareImage" ColumnName="tor_SquareImage" />
+                <ScalarProperty Name="tor_BackgroundImage1" ColumnName="tor_BackgroundImage1" />
+                <ScalarProperty Name="tor_BackgroundImage2" ColumnName="tor_BackgroundImage2" />
+                <ScalarProperty Name="tor_Name" ColumnName="tor_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

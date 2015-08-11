@@ -1,0 +1,83 @@
+﻿@model IEnumerable<BW_Admin.tbl_Tour>
+
+@{
+    ViewBag.Title = "Tours";
+}
+
+@section Styles{
+    <link rel="stylesheet" type="text/css" href="~/Content/jquery.dataTables.css">
+    <style>
+        th {
+            text-align: left;
+        }
+    </style>
+}
+
+<div class="content">
+
+    <div class="module">
+        <div class="module-head">
+            <h3>Tours</h3>
+        </div>
+        <div class="module-body">
+
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+            <table id="indexTab" class="display">
+                <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Priority
+                        </th>
+                        <th>
+                            Active
+                        </th>
+                        <th>Edit</th>
+                        <th>Details</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tor_Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tor_Priority)
+                            </td>
+                            <td>
+                                @item.tor_Active
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.tor_ID })
+                            </td>
+                            <td>
+                                @Html.ActionLink("Details", "Details", new { id = item.tor_ID })
+                            </td>
+                            <td>
+                                @Html.ActionLink("Delete", "Delete", new { id = item.tor_ID })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Datatable{
+    <script src="~/Scripts/datatables/jquery.dataTables.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#indexTab').DataTable();
+        });
+    </script>
+
+}

@@ -1,0 +1,237 @@
+﻿@model BW_Admin.tbl_Package
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="content">
+    <div class="module">
+        <div class="module-head">    <h3>Package</h3>    </div>   <div class="module-body">
+
+            <div>
+
+                <h5>
+                    Name
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.pkf_Name)
+                </div>
+
+                <h5>
+                    Subtitle
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.pkg_Subtitle)
+                </div>
+
+                <h5>
+                    Subcategory Name
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.tbl_Subcategory.sct_Name)
+                </div>
+
+                <h5>
+                    Overview
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.pkg_Overview)
+                </div>
+
+                <h5>
+                    Description
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.pkg_Description)
+                </div>
+
+                <h5>
+                    Inclusion
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.pkg_Inclusion)
+                </div>
+
+                <h5>
+                    DefaultSeason
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.pkg_DefaultSeason)
+                </div>
+
+                <h5>
+                    DefaultRoom
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.pkg_DefaultRoom)
+                </div>
+
+                <h5>
+                    DefaultDay
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.pkg_DefaultDay)
+                </div>
+
+                <h5>
+                    DayHeading1
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.pkg_DayHeading1)
+                </div>
+
+                <h5>
+                    DayItinerary1
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.pkg_DayItinerary1)
+                </div>
+
+                <h5>
+                    DayHeading2
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.pkg_DayHeading2)
+                </div>
+
+                <h5>
+                    DayItinerary2
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.pkg_DayItinerary2)
+                </div>
+
+                <h5>
+                    DayHeading3
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.pkg_DayHeading3)
+                </div>
+
+                <h5>
+                    DayItinerary3
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.pkg_DayItinerary3)
+                </div>
+
+                <h5>
+                    Roomtype1
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.pkg_Roomtype1)
+                </div>
+
+                <h5>
+                    Roomtype2
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.pkg_Roomtype2)
+                </div>
+
+                <h5>
+                    Roomtype3
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.pkg_Roomtype3)
+                </div>
+
+                <h5>
+                    Priority
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.pkg_Priority)
+                </div>
+
+                <h5>
+                    Active
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.pkg_Active)
+                </div>
+
+                <h5>
+                    CancelPolicy Name
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.tbl_CancelPolicy.cnp_Name)
+                </div>
+
+                <h5>
+                    Exclusion Name
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.tbl_Exclusion.exc_Name)
+                </div>
+
+                <h5>
+                    TermsAndCondition Name
+                </h5>
+
+                <div class="well">
+                    @Html.Raw(Model.tbl_TermsAndCondition.tnc_Name)
+                </div>
+
+                <h5>
+                    BannerImage
+                </h5>
+
+                <div class="well">
+                    <img class="img-responsive" src="~/Pictures/@Model.pkg_BannerImage" />
+                </div>
+
+                <h5>
+                    SquareImage
+                </h5>
+
+                <div class="well">
+                    <img class="img-responsive" src="~/Pictures/@Model.pkg_SquareImage" />
+                </div>
+
+                <h5>
+                    BackgroundImage1
+                </h5>
+
+                <div class="well">
+                    <img class="img-responsive" src="~/Pictures/@Model.pkg_BackgroundImage1" />
+                </div>
+
+                <h5>
+                    BackgroundImage2
+                </h5>
+
+                <div class="well">
+                    <img class="img-responsive" src="~/Pictures/@Model.pkg_BackgroundImage2" />
+                </div>
+
+
+            </div>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.pkg_ID }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    </div>
+</div>
